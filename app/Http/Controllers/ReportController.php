@@ -1,0 +1,6 @@
+<?php
+namespace App\Http\Controllers;
+use App\Models\{CorrectiveAction,Department,Incident,Inspection,Risk}; use Illuminate\Http\Request;
+class ReportController extends Controller {
+ public function index(Request $r){$from=$r->filled('from')?jalaliToCarbon($r->input('from')):now()->subMonths(6)->startOfMonth();$to=$r->filled('to')?jalaliToCarbon($r->input('to')):now()->endOfMonth();if(!$from)$from=now()->subMonths(6)->startOfMonth();if(!$to)$to=now()->endOfMonth();$riskByLevel=Risk::whereBetween('created_at',[$from,$to])->selectRaw('risk_level, count(*) total')->groupBy('risk_level')->pluck('total','risk_level');$incidentByType=Incident::whereBetween('occurred_at',[$from,$to])->selectRaw('type, count(*) total')->groupBy('type')->pluck('total','type');$departmentStats=Department::withCount(['users'])->get()->map(function($d)use($from,$to){$d->risks_count=Risk::where('department_id',$d->id)->whereBetween('created_at',[$from,$to])->count();$d->actions_open=CorrectiveAction::where('department_id',$d->id)->whereNotIn('status',['verified','closed'])->count();$d->inspection_avg=round((float)Inspection::where('department_id',$d->id)->whereNotNull('score')->avg('score'),1);return $d;});return view('reports.index',compact('riskByLevel','incidentByType','departmentStats','from','to'));}
+}

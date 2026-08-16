@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@font-face {
+  font-family: YekanBakh;
+  src: url("/public/fonts/400-YekanBakh-Regular.woff") format("woff");
+  font-display: normal;
+}
+:root {
+  color-scheme: light;
+}
+body {
+  font-family: YekanBakh, Tahoma, sans-serif;
+}
+[x-cloak] {
+  display: none !important;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
