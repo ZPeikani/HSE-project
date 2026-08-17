@@ -13,6 +13,9 @@
 body {
   font-family: YekanBakh, Tahoma, sans-serif;
 }
+a, button {
+  cursor: pointer;
+}
 [x-cloak] {
   display: none !important;
 }
