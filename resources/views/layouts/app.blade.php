@@ -25,12 +25,15 @@
 $(function(){
   $('[data-jdatepicker]').each(function(){
     var isDatetime = $(this).data('jdatepicker') === 'datetime';
+    var hasPersianValue = !!$(this).val().match(/^[1-4]\d{3}\//);
     $(this).persianDatepicker({
       format: isDatetime ? 'YYYY/MM/DD HH:mm' : 'YYYY/MM/DD',
       altFormat: isDatetime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD',
       timePicker: { enabled: isDatetime, meridian: { enabled: false } },
-      calendar: { persian: { locale: 'fa' } },
+      calendarType: 'persian',
+      calendar: { persian: { locale: 'fa', leapYearMode: 'algorithmic' } },
       initialValue: true,
+      initialValueType: hasPersianValue ? 'persian' : 'gregorian',
       observer: true,
       position: 'auto'
     });
