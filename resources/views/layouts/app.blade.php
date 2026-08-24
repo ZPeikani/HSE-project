@@ -40,4 +40,5 @@ $(function(){
   });
 });
 </script>
+@include('components.ai-chat')
 </body></html>

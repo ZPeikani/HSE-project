@@ -40,5 +40,6 @@ $(function(){
   });
 });
 </script>
+<?php echo $__env->make('components.ai-chat', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 </body></html>
 <?php /**PATH E:\HSE\hse-manager\resources\views/layouts/app.blade.php ENDPATH**/ ?>
