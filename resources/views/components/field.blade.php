@@ -11,4 +11,5 @@
   @else
   <input type="{{ $type }}" name="{{ $name }}" value="{{ old($name,$value??'') }}" @unless($optional??false) required @endunless placeholder="{{ $placeholder??'' }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
   @endif
+  @error($name)<p class="mt-1.5 text-xs font-bold text-rose-600">{{ $message }}</p>@enderror
 </div>

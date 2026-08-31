@@ -46,3 +46,17 @@ php artisan serve
 - پوشه‌های `storage` و `bootstrap/cache` باید قابل نوشتن باشند.
 
 برای نصب روی XAMPP ویندوز، فایل `INSTALL-WINDOWS.md` را مطالعه کنید.
+
+## نصب این به‌روزرسانی روی دیتابیس موجود
+
+برای قابلیت‌های جدید Migration ساخته نشده است. از دیتابیس فعلی بکاپ بگیرید و فایل
+`DATABASE_UPDATE_HSE_INCREMENTAL.sql` را در همان دیتابیس MySQL Import کنید. سپس:
+
+```bash
+php artisan optimize:clear
+php artisan storage:link
+npm run build
+```
+
+فایل SQL داده‌های موجود را حذف نمی‌کند و ستون‌ها/جدول‌های جدید را به‌صورت افزایشی اضافه می‌کند.
+گزارش Gap Analysis و سناریوهای تست در `IMPLEMENTATION_REPORT.md` قرار دارد.
