@@ -31,13 +31,7 @@
     {{-- Header --}}
     <div id="ai-panel-header">
         <div id="ai-header-info">
-            <div id="ai-avatar">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2.5L10.09 6.41L14 7.5L10.09 8.59L9 12.5L7.91 8.59L4 7.5L7.91 6.41L9 2.5Z"/>
-                    <path d="M17.5 11L18.27 13.23L20.5 14L18.27 14.77L17.5 17L16.73 14.77L14.5 14L16.73 13.23L17.5 11Z"/>
-                </svg>
-            </div>
-            <div>
+            <div id="ai-header-copy">
                 <div id="ai-header-title">دستیار هوش مصنوعی</div>
                 <div id="ai-header-status">
                     <span id="ai-status-dot"></span> آنلاین — HSE Expert
@@ -229,6 +223,7 @@
    پنل از چپ slide-in می‌کند تا با sidebar اصلی (سمت راست) تداخل نداشته باشد
 ───────────────────────────────────────────────────────────── */
 #ai-panel {
+<<<<<<< Updated upstream
     position: fixed;
     top: 0;
     left: 0;
@@ -244,6 +239,16 @@
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+=======
+    position:fixed; top:0; left:0; z-index:1100;
+    width:340px; height:100vh; height:100dvh;
+    display:flex; flex-direction:column;
+    background:#fff;
+    transform:translateX(-100%);
+    transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow:hidden;
+    box-shadow:6px 0 40px rgba(0,0,0,0.15);
+>>>>>>> Stashed changes
 }
 #ai-panel.ai-open {
     transform: translateX(0);
@@ -277,8 +282,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 20;
     padding: 0 16px;
     height: 64px;
+    min-height: 64px;
+    flex: 0 0 64px;
     background: linear-gradient(135deg, #064e3b 0%, #065f46 60%, #047857 100%);
     color: #fff;
     flex-shrink: 0;
@@ -287,27 +296,14 @@
 #ai-header-info {
     display: flex;
     align-items: center;
-    gap: 11px;
+    min-width: 0;
 }
-#ai-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-#ai-avatar svg {
-    width: 20px;
-    height: 20px;
-    color: #fff;
-}
+#ai-header-copy { min-width: 0; }
 #ai-header-title {
     font-size: 14.5px;
     font-weight: 700;
     line-height: 1.25;
+    white-space: nowrap;
 }
 #ai-header-status {
     display: flex;
@@ -328,10 +324,11 @@
 #ai-header-actions {
     display: flex;
     gap: 4px;
+    flex-shrink: 0;
 }
 #ai-header-actions button {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: 9px;
     background: rgba(255,255,255,0.1);
     border: none;
@@ -348,9 +345,95 @@
 }
 #ai-header-actions button svg { width: 16px; height: 16px; }
 
+<<<<<<< Updated upstream
 /* ─────────────────────────────────────────────────────────────
    Messages
 ───────────────────────────────────────────────────────────── */
+=======
+/* ── History Sheet ────────────────────────────────────────── */
+/* Sheet که به‌صورت absolute روی messages می‌افتد */
+#ai-sidebar {
+    position:absolute;
+    top:64px; left:0; right:0; bottom:0;
+    z-index:10;
+    background:#fff;
+    display:flex; flex-direction:column;
+    overflow:hidden;
+    /* بسته: از بالا پوشیده شده */
+    transform:translateY(-100%);
+    transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);
+    box-shadow:0 4px 24px rgba(0,0,0,0.12);
+}
+#ai-sidebar.sheet-open { transform:translateY(0); }
+
+#ai-sidebar-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 16px 11px;
+    border-bottom:1px solid #e5e7eb;
+    flex-shrink:0; background:#fff;
+}
+#ai-sidebar-title {
+    font-size:13.5px; font-weight:700; color:#1e293b;
+}
+#ai-sidebar-header button {
+    background:none; border:none; cursor:pointer;
+    color:#64748b; display:flex; align-items:center; justify-content:center;
+    padding:4px 6px; border-radius:6px; font-size:14px;
+    transition:background 0.12s,color 0.12s;
+}
+#ai-sidebar-header button:hover { background:#f1f5f9; color:#1e293b; }
+#ai-delete-all-btn { gap:4px; font-size:12px; font-family:inherit; }
+#ai-sidebar-close-btn { font-size:15px; }
+
+#ai-conv-list {
+    flex:1; overflow-y:auto; padding:4px 0;
+    scrollbar-width:thin; scrollbar-color:#cbd5e1 transparent;
+}
+#ai-conv-list::-webkit-scrollbar { width:4px; }
+#ai-conv-list::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:4px; }
+
+.ai-conv-item {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 16px; cursor:pointer;
+    transition:background 0.12s; position:relative;
+    border-bottom:1px solid #f1f5f9;
+}
+.ai-conv-item:last-child { border-bottom:none; }
+.ai-conv-item:hover { background:#f8fafc; }
+.ai-conv-item.active { background:#f0fdf4; }
+.ai-conv-item.active::before {
+    content:''; position:absolute; right:0; top:0; bottom:0;
+    width:3px; background:#10b981; border-radius:0 2px 2px 0;
+}
+.ai-conv-icon {
+    width:32px; height:32px; border-radius:10px; flex-shrink:0;
+    background:#f1f5f9;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px;
+}
+.ai-conv-item.active .ai-conv-icon { background:#dcfce7; }
+.ai-conv-meta { flex:1; min-width:0; }
+.ai-conv-title {
+    font-size:13px; color:#1e293b; line-height:1.4;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.ai-conv-item.active .ai-conv-title { color:#065f46; font-weight:600; }
+.ai-conv-date { font-size:11px; color:#94a3b8; margin-top:2px; }
+.ai-conv-del {
+    background:none; border:none; cursor:pointer;
+    color:#cbd5e1; padding:4px; border-radius:5px;
+    display:flex; align-items:center; flex-shrink:0;
+    transition:color 0.12s, background 0.12s;
+}
+.ai-conv-del:hover { color:#ef4444; background:#fee2e2; }
+.ai-conv-del svg { width:14px; height:14px; }
+.ai-conv-list-empty {
+    padding:32px 16px; text-align:center;
+    font-size:13px; color:#94a3b8;
+}
+
+/* ── Messages ─────────────────────────────────────────────── */
+>>>>>>> Stashed changes
 #ai-messages {
     flex: 1;
     overflow-y: auto;
