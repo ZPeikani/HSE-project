@@ -10,4 +10,8 @@
 database/database.sqlite
 npm-debug.log
 yarn-error.log
-storage/framework/views/27b9fb78a7cac9dbab6bdb473587fd4a.php
+<<<<<<< Updated upstream
+=======
+/storage/framework/views/
+/storage/logs/*.log
+>>>>>>> Stashed changes
