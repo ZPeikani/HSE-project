@@ -139,7 +139,7 @@
 #ai-alert {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 9999;
+    z-index: 35;
     padding: 12px 16px;
     background: #fef2f2;
     border-bottom: 2px solid #fca5a5;
@@ -197,7 +197,7 @@
 #ai-confirm-modal {
     position: fixed;
     inset: 0;
-    z-index: 1400;
+    z-index: 35;
     display: none;
     align-items: center;
     justify-content: center;
@@ -259,7 +259,7 @@
     position: fixed;
     bottom: 86px;
     left: 18px;
-    z-index: 1200;
+    z-index: 30;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -299,7 +299,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 1099;
+    z-index: 29;
     background: rgba(0,0,0,0.45);
     opacity: 0;
     transition: opacity 0.28s ease;
@@ -320,7 +320,7 @@
     width: 380px;
     height: 100vh;
     height: 100dvh;
-    z-index: 1100;
+    z-index: 30;
     display: flex;
     flex-direction: column;
     background: #ffffff;
