@@ -350,7 +350,7 @@
         border-radius: 0;
     }
     #ai-toggle-btn {
-        bottom: 82px;
+        bottom: calc(96px + env(safe-area-inset-bottom));
         left: 14px;
     }
 }
