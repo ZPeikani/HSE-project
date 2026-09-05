@@ -10,4 +10,9 @@
 database/database.sqlite
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
 storage/framework/views/
+=======
+/storage/framework/views/
+/storage/logs/*.log
+>>>>>>> 98ec5ac71ef037bd5eb338ddd0a23d92587eddcc
