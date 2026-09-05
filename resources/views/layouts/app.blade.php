@@ -71,7 +71,10 @@ document.querySelectorAll('[data-sidebar-category]').forEach(function(category){
 });
 
 $(function(){
+  var activeDateInput = null;
+
   $('[data-jdatepicker]').each(function(){
+    $(this).on('focus click', function(){ activeDateInput = this; });
     var isDatetime = $(this).data('jdatepicker') === 'datetime';
     var hasPersianValue = !!$(this).val().match(/^[1-4]\d{3}\//);
     $(this).persianDatepicker({
@@ -85,6 +88,11 @@ $(function(){
       observer: true,
       position: 'auto'
     });
+  });
+
+  $(document).on('dblclick', '.datepicker-plot-area .table-days td', function(){
+    $(this).trigger('click');
+    if (activeDateInput) $(activeDateInput).persianDatepicker('hide');
   });
 });
 </script>
