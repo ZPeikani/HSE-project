@@ -975,7 +975,7 @@
         setTimeout(() => { alertEl.style.display = 'none'; }, 15000);
     }
     function escapeHtml(str) {
-        return str
+        return String(str ?? '')
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
@@ -1023,6 +1023,8 @@
                       + '\n' + JSON.stringify(data.debug.body, null, 2)
                     : '';
                 showAlert('خطای هوش مصنوعی', data.error + debug);
+            } else if (typeof data.reply !== 'string') {
+                showAlert('پاسخ نامعتبر', 'سرور پاسخ قابل نمایش برای این پیام برنگرداند.');
             } else {
                 history.push({ role: 'user',      content: text       });
                 history.push({ role: 'assistant', content: data.reply });
