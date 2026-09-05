@@ -24,6 +24,15 @@ a, button {
   cursor: pointer;
   transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
+a.bg-slate-900:hover,
+button.bg-slate-900:hover {
+  background-color: rgb(100 116 139);
+  color: white;
+}
+a.bg-emerald-600:hover,
+button.bg-emerald-600:hover {
+  background-color: rgb(3, 111, 81);
+}
 [x-cloak] {
   display: none !important;
 }
