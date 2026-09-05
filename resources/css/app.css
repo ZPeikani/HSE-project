@@ -33,6 +33,14 @@ a.bg-emerald-600:hover,
 button.bg-emerald-600:hover {
   background-color: rgb(3, 111, 81);
 }
+a.bg-amber-500:hover,
+button.bg-amber-500:hover {
+  background-color: rgb(179, 98, 6);
+}
+a.bg-orange-500:hover,
+button.bg-orange-500:hover {
+  background-color: rgb(176, 65, 6);
+}
 [x-cloak] {
   display: none !important;
 }
