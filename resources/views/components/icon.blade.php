@@ -12,5 +12,10 @@
 @case('logout')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4m7 14l5-5-5-5m5 5H9"/></svg>@break
 @case('bell')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M18 8a6 6 0 00-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9zm-8 13h4"/></svg>@break
 @case('settings')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM19.4 15a1.7 1.7 0 00.3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6v.2h-4V21a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 00.3-1.9A1.7 1.7 0 003 14H2.8v-4H3a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 009 4.6 1.7 1.7 0 0010 3V2.8h4V3a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 00-.3 1.9 1.7 1.7 0 001.6 1h.2v4H21a1.7 1.7 0 00-1.6 1z"/></svg>@break
+@case('edit')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>@break
+@case('trash')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 7h16m-10 4v6m4-6v6M9 7V4h6v3m-9 0l1 14h10l1-14"/></svg>@break
+@case('pause')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="5" y="4" width="5" height="16" rx="1" stroke-width="2"/><rect x="14" y="4" width="5" height="16" rx="1" stroke-width="2"/></svg>@break
+@case('play')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M8 5v14l11-7L8 5z"/></svg>@break
+@case('eye')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.5" stroke-width="2"/></svg>@break
 @default<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
 @endswitch
