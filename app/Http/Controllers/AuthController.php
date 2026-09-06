@@ -4,11 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\HseNotification;
+use App\Services\HseReminderService;
 
 class AuthController extends Controller {
  public function create(){return view('auth.login');}
 
- public function store(Request $r){
+ public function store(Request $r, HseReminderService $reminders){
   // مرحله ۱: اعتبارسنجی فرمت
   $r->validate([
    'email'    => ['required','email'],
@@ -45,6 +47,14 @@ class AuthController extends Controller {
   Auth::login($user, $r->boolean('remember'));
   $r->session()->regenerate();
   $user->update(['last_login_at' => now()]);
+  $reminders->syncFor($user);
+  $r->session()->flash('login_notifications', HseNotification::where('user_id', $user->id)
+   ->whereNull('read_at')
+   ->latest()
+   ->limit(5)
+   ->get(['title', 'message', 'type'])
+   ->map(fn ($notification) => $notification->toArray())
+   ->all());
   return redirect()->intended(route('dashboard'));
  }
  public function destroy(Request $r){Auth::logout();$r->session()->invalidate();$r->session()->regenerateToken();return redirect()->route('login');}
