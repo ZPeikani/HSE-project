@@ -18,9 +18,14 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale(config('app.locale'));
 
         View::composer('layouts.app', function ($view): void {
-            $view->with('unreadNotifications', auth()->check()
-                ? HseNotification::where('user_id', auth()->id())->whereNull('read_at')->count()
-                : 0);
+            $notifications = auth()->check()
+                ? HseNotification::where('user_id', auth()->id())->whereNull('read_at')->latest()->limit(5)->get()
+                : collect();
+
+            $view->with([
+                'unreadNotifications' => $notifications->count(),
+                'unreadNotificationItems' => $notifications,
+            ]);
         });
 
         // Blade directive: @jdate($carbonDate) — outputs 'Y/m/d'

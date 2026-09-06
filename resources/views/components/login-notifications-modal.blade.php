@@ -16,7 +16,7 @@
   </div>
   <div class="flex shrink-0 items-center justify-end gap-2 border-t border-slate-200 bg-slate-50 px-4 py-3">
   <button type="button" data-close-login-notifications class="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-100">بعداً بررسی می‌کنم</button>
-  <a href="{{ route('notifications.index') }}" class="rounded-md px-3 py-1.5 text-xs font-bold text-white" style="background-color: #059669; color: #fff; transition: background-color .2s ease, box-shadow .2s ease;" onmouseover="this.style.backgroundColor='#047857'; this.style.boxShadow='0 4px 12px rgba(5, 150, 105, .25)'" onmouseout="this.style.backgroundColor='#059669'; this.style.boxShadow='none'">مشاهده همه پیام‌ها</a>
+  <a href="{{ route('notifications.index') }}" class="rounded-md px-3 py-1.5 text-xs font-bold text-white" style="background-color: #059669; color: #fff; transition: background-color .2s ease, box-shadow .2s ease;" onmouseover="this.style.backgroundColor='#047857'; this.style.boxShadow='0 4px 12px rgba(5, 150, 105, .25)'" onmouseout="this.style.backgroundColor='#059669'; this.style.boxShadow='none'">مشاهده همه اعلان‌ها</a>
   </div>
  </div>
 </div>
