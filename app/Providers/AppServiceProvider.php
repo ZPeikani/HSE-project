@@ -4,6 +4,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use App\Models\HseNotification;
 use Morilog\Jalali\Jalalian;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useTailwind();
         Carbon::setLocale(config('app.locale'));
+
+        View::composer('layouts.app', function ($view): void {
+            $view->with('unreadNotifications', auth()->check()
+                ? HseNotification::where('user_id', auth()->id())->whereNull('read_at')->count()
+                : 0);
+        });
 
         // Blade directive: @jdate($carbonDate) — outputs 'Y/m/d'
         Blade::directive('jdate', function ($expression) {
