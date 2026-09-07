@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 document.querySelectorAll('[data-auto-dismiss]').forEach((el) => setTimeout(() => el.remove(), 4500));
@@ -16,3 +19,8 @@ document.querySelectorAll('[data-add-row]').forEach((button) => button.addEventL
     });
     target.appendChild(row);
 }));
+
+document.querySelectorAll('[data-chart]').forEach((canvas) => {
+    const config = JSON.parse(canvas.dataset.chart);
+    new Chart(canvas, config);
+});
