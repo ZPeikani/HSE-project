@@ -16,4 +16,69 @@
 <form class="mb-5 flex flex-wrap items-end gap-3 rounded-2xl border border-slate-200 bg-white p-4"><div><span class="mb-1 block text-xs font-bold">از تاریخ</span><div class="relative"><input type="text" name="from" value="{{ $fromVal }}" data-jdatepicker="date" autocomplete="off" dir="ltr" class="rounded-xl border border-slate-200 py-2 pl-3 pr-9"><span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span></div></div><div><span class="mb-1 block text-xs font-bold">تا تاریخ</span><div class="relative"><input type="text" name="to" value="{{ $toVal }}" data-jdatepicker="date" autocomplete="off" dir="ltr" class="rounded-xl border border-slate-200 py-2 pl-3 pr-9"><span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span></div></div><button class="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white">به‌روزرسانی گزارش</button><button type="button" onclick="print()" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-bold">چاپ / PDF</button></form>
 <div class="grid gap-5 lg:grid-cols-2"><section class="rounded-2xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><h3 class="font-black">توزیع سطح ریسک‌ها</h3><span class="text-xs text-slate-400">{{ $riskByLevel->sum() }} مورد</span></div><div class="mx-auto mt-5 h-64 max-w-sm"><canvas data-chart='@json($riskChart)'></canvas></div></section><section class="rounded-2xl border border-slate-200 bg-white p-6"><h3 class="font-black">ترکیب رویدادها</h3><div class="mt-5 h-64"><canvas data-chart='@json($incidentChart)'></canvas></div></section></div>
 <div class="mt-5 w-full lg:w-1/2"><section class="w-full rounded-2xl border border-slate-200 bg-white p-6"><div class="mb-4 flex items-center justify-between"><div><h3 class="font-black">مقایسه عملکرد واحدها</h3><p class="text-xs text-slate-400">ریسک ثبت‌شده، اقدام باز و میانگین امتیاز بازرسی</p></div><span class="text-xs text-slate-400">در بازه انتخاب‌شده</span></div><div class="h-64 w-full"><canvas class="!h-full !w-full" data-chart='@json($departmentChart)'></canvas></div></section></div>
-<section class="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white"><div class="border-b p-5"><h3 class="font-black">عملکرد واحدهای سازمانی</h3><p class="text-xs text-slate-400">مقایسه ریسک، اقدام باز و میانگین امتیاز بازرسی</p></div><div class="overflow-x-auto"><table class="w-full min-w-[700px] text-right text-sm"><thead class="bg-slate-50 text-xs text-slate-500"><tr><th class="p-4">واحد</th><th>کاربران</th><th>ریسک‌های ثبت‌شده</th><th>اقدامات باز</th><th>میانگین بازرسی</th><th>ارزیابی</th></tr></thead><tbody class="divide-y">@foreach($departmentStats as $d)<tr><td class="p-4 font-bold">{{ $d->name }}</td><td>{{ $d->users_count }}</td><td>{{ $d->risks_count }}</td><td class="{{ $d->actions_open>3?'font-bold text-rose-600':'' }}">{{ $d->actions_open }}</td><td>{{ $d->inspection_avg }}٪</td><td><span class="rounded-full px-2 py-1 text-xs font-bold {{ $d->inspection_avg>=85?'bg-emerald-100 text-emerald-700':($d->inspection_avg>=70?'bg-amber-100 text-amber-700':'bg-rose-100 text-rose-700') }}">{{ $d->inspection_avg>=85?'مطلوب':($d->inspection_avg>=70?'نیازمند بهبود':'نامطلوب') }}</span></td></tr>@endforeach</tbody></table></div></section>@endsection
+<section class="mt-5 overflow-hidden rounded-[28px] border border-slate-200 bg-[#fffdfb] shadow-[0_12px_35px_rgba(15,23,42,0.06)]">
+    <div class="flex flex-col gap-3 border-b border-slate-200 bg-gradient-to-r from-[#fef3ec] via-[#fffdfb] to-[#f0fdf4] p-5 md:flex-row md:items-center md:justify-between">
+        <div>
+            <h3 class="text-lg font-black text-slate-800">عملکرد واحدهای سازمانی</h3>
+            <p class="mt-1 text-xs text-slate-500">مقایسه ریسک، اقدام باز و میانگین امتیاز بازرسی</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="rounded-full border border-slate-200 bg-white px-2.5 py-1.5 font-bold text-slate-600">{{ $departmentStats->count() }} واحد</span>
+            <span class="rounded-full bg-emerald-50 px-2.5 py-1.5 font-bold text-emerald-700">میانگین {{ round($departmentStats->avg('inspection_avg') ?? 0, 1) }}٪</span>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full min-w-[760px] border-separate border-spacing-0 text-right text-sm">
+            <thead>
+                <tr class="bg-[#f8f5f1] text-[11px] text-slate-600">
+                    <th class="p-4 font-black">واحد</th>
+                    <th class="p-4 font-black">کاربران</th>
+                    <th class="p-4 font-black">ریسک‌های ثبت‌شده</th>
+                    <th class="p-4 font-black">اقدامات باز</th>
+                    <th class="p-4 font-black">میانگین بازرسی</th>
+                    <th class="p-4 font-black">ارزیابی</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($departmentStats as $d)
+                    @php
+                        $statusClass = $d->inspection_avg >= 85 ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : ($d->inspection_avg >= 70 ? 'bg-amber-100 text-amber-700 border-amber-200' : 'bg-rose-100 text-rose-700 border-rose-200');
+                        $statusText = $d->inspection_avg >= 85 ? 'مطلوب' : ($d->inspection_avg >= 70 ? 'نیازمند بهبود' : 'نامطلوب');
+                        $openActionClass = $d->actions_open > 3 ? 'text-rose-600 font-black' : 'text-slate-700';
+                    @endphp
+                    <tr class="border-b border-[#f3eee8] bg-[#fffefc] transition-colors duration-200 hover:bg-[#fff7f2]">
+                        <td class="p-4">
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <div class="font-black text-slate-800">{{ $d->name }}</div>
+                                    <div class="mt-0.5 text-[11px] text-slate-500">واحد عملکردی</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4">
+                            <span class="inline-flex min-w-[52px] items-center justify-center rounded-lg bg-slate-100 px-2.5 py-1.5 font-bold text-slate-700">{{ $d->users_count }}</span>
+                        </td>
+                        <td class="p-4">
+                            <span class="inline-flex min-w-[52px] items-center justify-center rounded-lg bg-orange-50 px-2.5 py-1.5 font-bold text-orange-700">{{ $d->risks_count }}</span>
+                        </td>
+                        <td class="p-4">
+                            <span class="inline-flex min-w-[52px] items-center justify-center rounded-lg {{ $d->actions_open > 3 ? 'bg-rose-50' : 'bg-sky-50' }} px-2.5 py-1.5 font-bold {{ $openActionClass }}">{{ $d->actions_open }}</span>
+                        </td>
+                        <td class="p-4">
+                            <div class="flex items-center justify-end gap-2">
+                                <span class="font-black text-slate-800">{{ $d->inspection_avg }}٪</span>
+                                <div class="h-2.5 w-20 overflow-hidden rounded-full bg-slate-100">
+                                    <div class="h-full rounded-full {{ $d->inspection_avg >= 85 ? 'bg-emerald-500' : ($d->inspection_avg >= 70 ? 'bg-amber-500' : 'bg-rose-500') }}" style="width: {{ min(max($d->inspection_avg, 0), 100) }}%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4">
+                            <span class="inline-flex rounded-full border px-2.5 py-1.5 text-xs font-bold {{ $statusClass }}">{{ $statusText }}</span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</section>@endsection
