@@ -1,6 +1,8 @@
 @php $classes='h-5 w-5'; @endphp
 @switch($name)
 @case('home')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9z"/></svg>@break
+@case('activity')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h4l3-8 4 16 3-8h4"/></svg>@break
+@case('shield')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l7 3v5c0 4.5-2.7 8.1-7 10-4.3-1.9-7-5.5-7-10V6l7-3z"/><path stroke-linecap="round" stroke-width="2" d="m9 12 2 2 4-4"/></svg>@break
 @case('clipboard')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9 5h6m-7 0a2 2 0 012-2h4a2 2 0 012 2h2a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h2zm1 6h6m-6 4h6"/></svg>@break
 @case('calendar')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" stroke-width="2"/><path stroke-width="2" d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>@break
 @case('warning')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 9v4m0 4h.01M10.3 4.5L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.5a2 2 0 00-3.4 0z"/></svg>@break
