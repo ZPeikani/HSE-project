@@ -23,7 +23,6 @@
  const toggle = menu.querySelector('[data-notification-toggle]');
  const panel = menu.querySelector('[data-notification-panel]');
  let latestNotificationId = {{ $unreadNotificationItems->merge(collect([\App\Models\HseNotification::where('user_id', auth()->id())->latest('id')->first()]))->max('id') ?? 0 }};
- const initialNotifications = @json($unreadNotificationItems->map(fn ($notification) => ['id' => $notification->id, 'title' => $notification->title, 'message' => $notification->message])->values());
  const toastContainer = document.querySelector('[data-notification-toast-container]');
  const pollUrl = @json(route('notifications.poll'));
  const close = function () { panel.classList.add('hidden'); toggle.setAttribute('aria-expanded', 'false'); };
@@ -48,11 +47,7 @@
   if (!badge) { badge = document.createElement('span'); badge.dataset.notificationBadge = ''; badge.className = 'absolute -left-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white'; toggle.appendChild(badge); }
   badge.textContent = count;
  };
- const shownKey = 'hse-shown-notification-toasts-v8';
- const shown = new Set(JSON.parse(sessionStorage.getItem(shownKey) || '[]'));
- const poll = function () { fetch(pollUrl, { headers: { 'Accept': 'application/json' } }).then(response => response.json()).then(data => { updateBadge(data.unread_count); data.notifications.forEach(function (notification) { if (notification.id > latestNotificationId) { latestNotificationId = notification.id; shown.add(notification.id); showToast(notification); } }); sessionStorage.setItem(shownKey, JSON.stringify(Array.from(shown).slice(-50))); }).catch(function () {}); };
- initialNotifications.forEach(function (notification) { if (!shown.has(notification.id)) { shown.add(notification.id); showToast(notification); } });
- sessionStorage.setItem(shownKey, JSON.stringify(Array.from(shown).slice(-50)));
+ const poll = function () { fetch(pollUrl + '?since=' + encodeURIComponent(latestNotificationId), { headers: { 'Accept': 'application/json' } }).then(response => response.json()).then(data => { updateBadge(data.unread_count); const newNotifications = data.notifications.filter(notification => notification.id > latestNotificationId); if (newNotifications.length) { latestNotificationId = Math.max(...newNotifications.map(notification => notification.id)); newNotifications.forEach(showToast); } }).catch(function () {}); };
  setInterval(poll, 20000);
 }());
 </script>
