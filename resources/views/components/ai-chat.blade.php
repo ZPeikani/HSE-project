@@ -287,6 +287,17 @@
     width: 24px;
     height: 24px;
 }
+
+@media print {
+    #ai-toggle-btn,
+    #ai-panel,
+    #ai-overlay,
+    #ai-alert,
+    #ai-confirm-modal {
+        display: none !important;
+    }
+}
+
 @keyframes ai-pulse-ring {
     0%,100% { transform: scale(1); opacity: 1; }
     50%      { transform: scale(1.4); opacity: 0.65; }

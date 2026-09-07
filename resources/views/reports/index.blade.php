@@ -12,6 +12,105 @@
     $departmentInspections = $departmentStats->pluck('inspection_avg')->map(fn($value) => (float) $value)->values()->all();
     $departmentChart = ['type' => 'bar', 'data' => ['labels' => $departmentLabels, 'datasets' => [['label' => 'ریسک ثبت‌شده', 'data' => $departmentRisks, 'backgroundColor' => '#f97316', 'borderRadius' => 6, 'borderSkipped' => false, 'barThickness' => 10, 'maxBarThickness' => 12], ['label' => 'اقدام باز', 'data' => $departmentActions, 'backgroundColor' => '#0ea5e9', 'borderRadius' => 6, 'borderSkipped' => false, 'barThickness' => 10, 'maxBarThickness' => 12], ['label' => 'میانگین بازرسی', 'data' => $departmentInspections, 'backgroundColor' => '#10b981', 'borderRadius' => 6, 'borderSkipped' => false, 'barThickness' => 10, 'maxBarThickness' => 12]]], 'options' => ['responsive' => true, 'maintainAspectRatio' => false, 'plugins' => ['legend' => ['position' => 'bottom', 'rtl' => true, 'labels' => ['usePointStyle' => true, 'padding' => 18]]], 'scales' => ['y' => ['beginAtZero' => true, 'ticks' => ['precision' => 0]], 'x' => ['grid' => ['display' => false], 'categoryPercentage' => .65, 'barPercentage' => .7]]]];
 @endphp
+<style>
+    @media print {
+        @page { size: A4 portrait; margin: 12mm; }
+
+        .reports-print-page {
+            background: #fff !important;
+        }
+
+        .reports-print-page #main-sidebar,
+        .reports-print-page main > header,
+        .reports-print-page > div > nav,
+        .reports-print-page #sidebar-backdrop,
+        .reports-print-page #ai-toggle-btn,
+        .reports-print-page #ai-panel,
+        .reports-print-page #ai-overlay,
+        .reports-print-page #ai-alert,
+        .reports-print-page #ai-confirm-modal,
+        #management-report > .mb-4,
+        #management-report > form {
+            display: none !important;
+        }
+
+        .reports-print-page main > div:has(#management-report) {
+            padding: 0 !important;
+        }
+
+        #management-report {
+            width: 100% !important;
+            color: #0f172a !important;
+            direction: rtl;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        #management-report .print-report-title {
+            display: block !important;
+            margin: 0 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0f766e;
+            text-align: right;
+        }
+
+        #management-report .print-report-title h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        #management-report .print-report-title p {
+            margin: 5px 0 0;
+            color: #475569;
+            font-size: 11px;
+        }
+
+        #management-report > .grid {
+            grid-template-columns: minmax(0, 1fr) !important;
+            gap: 12px !important;
+        }
+
+        #management-report > .grid > section,
+        #management-report > div > section,
+        #management-report > section {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            box-shadow: none !important;
+        }
+
+        #management-report > div.mt-5 {
+            width: 100% !important;
+            margin-top: 12px !important;
+        }
+
+        #management-report > .grid > section,
+        #management-report > div.mt-5 > section,
+        #management-report > section {
+            width: 100% !important;
+        }
+
+        #management-report canvas {
+            max-width: 100% !important;
+        }
+
+        #management-report table {
+            min-width: 0 !important;
+            table-layout: fixed;
+            font-size: 10px;
+        }
+
+        #management-report th,
+        #management-report td {
+            padding: 8px !important;
+        }
+    }
+</style>
+<div id="management-report">
+<div class="print-report-title" style="display:none">
+    <h1>گزارش‌های مدیریتی HSE</h1>
+    <p>گزارش تحلیلی عملکرد HSE در بازه {{ $fromVal }} تا {{ $toVal }}</p>
+</div>
 <div class="mb-4 flex flex-wrap gap-2"><span class="py-2 text-sm font-bold">خروجی Excel/CSV:</span>@foreach(['risks'=>'ریسک‌ها','incidents'=>'حوادث','actions'=>'CAPA','inspections'=>'بازرسی‌ها'] as $k=>$v)<a href="{{ route('reports.export',['type'=>$k]) }}" class="rounded-xl bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700">{{ $v }}</a>@endforeach</div>
 <form class="mb-5 flex flex-wrap items-end gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><div><span class="mb-1 block text-xs font-bold">از تاریخ</span><div class="relative"><input type="text" name="from" value="{{ $fromVal }}" data-jdatepicker="date" autocomplete="off" dir="ltr" class="rounded-xl border border-slate-200 bg-slate-50 py-2 pl-3 pr-9" style="background-image:none;"><span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span></div></div><div><span class="mb-1 block text-xs font-bold">تا تاریخ</span><div class="relative"><input type="text" name="to" value="{{ $toVal }}" data-jdatepicker="date" autocomplete="off" dir="ltr" class="rounded-xl border border-slate-200 bg-slate-50 py-2 pl-3 pr-9" style="background-image:none;"><span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span></div></div><button class="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white shadow-sm">به‌روزرسانی گزارش</button><button type="button" onclick="print()" class="rounded-xl border border-slate-200 bg-slate-50 px-5 py-2.5 text-sm font-bold">چاپ / PDF</button></form>
 <div class="grid gap-5 lg:grid-cols-2"><section class="rounded-2xl border border-emerald-200 bg-[linear-gradient(135deg,#ffffff_0%,#f0fdf4_38%,#dcfce7_100%)] p-6 shadow-[0_16px_28px_rgba(22,163,74,0.08)]"><div class="flex items-center justify-between"><h3 class="font-black">توزیع سطح ریسک‌ها</h3><span class="text-xs text-slate-400">{{ $riskByLevel->sum() }} مورد</span></div><div class="mx-auto mt-5 h-64 max-w-sm"><canvas data-chart='@json($riskChart)'></canvas></div></section><section class="rounded-2xl border border-sky-200 bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_35%,#e0f2fe_100%)] p-6 shadow-[0_16px_28px_rgba(14,165,233,0.08)]"><h3 class="font-black">ترکیب رویدادها</h3><div class="mt-5 h-64"><canvas data-chart='@json($incidentChart)'></canvas></div></section></div>
@@ -81,4 +180,6 @@
             </tbody>
         </table>
     </div>
-</section>@endsection
+</section>
+</div>
+@endsection
