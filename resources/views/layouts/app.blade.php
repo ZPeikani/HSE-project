@@ -98,4 +98,5 @@ $(function(){
 </script>
 @include('components.ai-chat')
 @include('components.login-notifications-modal')
+@include('components.action-confirmation-modal')
 </body></html>
