@@ -22,7 +22,7 @@
  if (!menu) return;
  const toggle = menu.querySelector('[data-notification-toggle]');
  const panel = menu.querySelector('[data-notification-panel]');
- let latestNotificationId = {{ $unreadNotificationItems->merge(collect([\App\Models\HseNotification::where('user_id', auth()->id())->latest('id')->first()]))->max('id') ?? 0 }};
+ let latestNotificationId = {{ max($unreadNotificationItems->pluck('id')->max() ?? 0, \App\Models\HseNotification::where('user_id', auth()->id())->latest('id')->value('id') ?? 0) }};
  const toastContainer = document.querySelector('[data-notification-toast-container]');
  const pollUrl = @json(route('notifications.poll'));
  const close = function () { panel.classList.add('hidden'); toggle.setAttribute('aria-expanded', 'false'); };
