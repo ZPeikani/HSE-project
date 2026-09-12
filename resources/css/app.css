@@ -48,7 +48,20 @@ button.bg-orange-500:hover {
   width: 5px;
   height: 5px;
 }
+.scrollbar-thin {
+  scrollbar-color: rgb(71 85 105 / 0.9) transparent;
+  scrollbar-width: thin;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: rgb(71 85 105 / 0.9);
   border-radius: 999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgb(16 185 129 / 0.9);
+  background-clip: padding-box;
 }
