@@ -34,7 +34,7 @@
    @yield('content')
   </div>
  </main>
- <nav class="fixed inset-x-3 bottom-3 z-40 flex items-center justify-around rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur lg:hidden">@foreach([['dashboard','home','خانه'],['inspections.index','clipboard','بازرسی'],['risks.index','warning','ریسک'],['incidents.index','incident','رویداد'],['actions.index','check','اقدامات']] as [$route,$icon,$label])<a href="{{ route($route) }}" class="flex min-w-14 flex-col items-center gap-1 rounded-xl px-2 py-1.5 text-[10px] font-bold {{ request()->routeIs(str($route)->before('.').'.*')||request()->routeIs($route)?'bg-emerald-50 text-emerald-700':'text-slate-400' }}">@include('components.icon',['name'=>$icon]){{ $label }}</a>@endforeach</nav>
+ <nav id="mobile-bottom-nav" class="fixed inset-x-3 bottom-3 z-40 flex items-center justify-around rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur lg:hidden">@foreach([['dashboard','home','خانه'],['inspections.index','clipboard','بازرسی'],['risks.index','warning','ریسک'],['incidents.index','incident','رویداد'],['actions.index','check','اقدامات']] as [$route,$icon,$label])<a href="{{ route($route) }}" class="flex min-w-14 flex-col items-center gap-1 rounded-xl px-2 py-1.5 text-[10px] font-bold {{ request()->routeIs(str($route)->before('.').'.*')||request()->routeIs($route)?'bg-emerald-50 text-emerald-700':'text-slate-400' }}">@include('components.icon',['name'=>$icon]){{ $label }}</a>@endforeach</nav>
  <button id="sidebar-backdrop" type="button" class="fixed inset-0 z-40 hidden bg-slate-950/50 lg:hidden" aria-label="بستن منو"></button>
 </div>
 <script>

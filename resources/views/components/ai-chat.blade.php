@@ -728,6 +728,7 @@
     /* ── Open / Close ─────────────────────────────────────── */
     function openPanel() {
         isOpen = true;
+        document.body.classList.add('ai-panel-open');
         panel.classList.add('ai-open');
         panel.setAttribute('aria-hidden', 'false');
         // دکمه toggle را مخفی کن (در همه سایزها)
@@ -742,6 +743,7 @@
     }
     function closePanel() {
         isOpen = false;
+        document.body.classList.remove('ai-panel-open');
         panel.classList.remove('ai-open');
         panel.setAttribute('aria-hidden', 'true');
         // دکمه toggle را دوباره نمایش بده
