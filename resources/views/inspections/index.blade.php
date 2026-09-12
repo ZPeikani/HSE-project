@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (calendarHeader) {
 		monthNavigation = document.createElement('div');
-		monthNavigation.className = 'absolute left-20 right-20 top-1/2 flex -translate-y-1/2 items-center justify-center gap-2 sm:left-32 sm:right-32';
-		monthNavigation.innerHTML = `<button type="button" data-month-step="-1" class="flex h-9 items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 text-xs font-bold text-slate-900 shadow-sm hover:bg-slate-100" title="ماه قبل" aria-label="ماه قبل"><span class="text-lg leading-none">‹</span><span>ماه قبل</span></button><button type="button" data-month-step="1" class="flex h-9 items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 text-xs font-bold text-slate-900 shadow-sm hover:bg-slate-100" title="ماه بعد" aria-label="ماه بعد"><span>ماه بعد</span><span class="text-lg leading-none">›</span></button>`;
-		calendarHeader.classList.add('relative');
+		monthNavigation.className = 'absolute inset-x-0 bottom-5 flex translate-y-0 items-center justify-center gap-2 md:inset-x-32 md:bottom-auto md:top-1/2 md:-translate-y-1/2';
+		monthNavigation.innerHTML = `<button type="button" data-month-step="-1" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm transition hover:border-slate-300 hover:bg-slate-100" title="ماه قبل" aria-label="ماه قبل"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg></button><button type="button" data-month-step="1" class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm transition hover:border-slate-300 hover:bg-slate-100" title="ماه بعد" aria-label="ماه بعد"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></svg></button>`;
+		calendarHeader.classList.add('relative', 'flex-wrap', 'gap-3', 'pb-20', 'md:flex-nowrap', 'md:gap-0', 'md:pb-4');
 		calendarHeader.insertBefore(monthNavigation, calendarHeader.lastElementChild);
 	}
 
