@@ -11,5 +11,5 @@ class NotificationController extends Controller {
   $new=HseNotification::where('user_id',auth()->id())->whereNull('read_at')->where('id','>',$since)->latest()->get(['id','title','message','type']);
   return response()->json(['unread_count'=>HseNotification::where('user_id',auth()->id())->whereNull('read_at')->count(),'notifications'=>$new->values()]);
  }
- public function read(HseNotification $notification){abort_unless($notification->user_id===auth()->id(),403);$notification->update(['read_at'=>now()]);return $notification->notifiable_type===\App\Models\CorrectiveAction::class?redirect()->route('actions.show',$notification->notifiable_id):back();}
+ public function read(HseNotification $notification){abort_unless($notification->user_id===auth()->id(),403);$notification->update(['read_at'=>now()]);return match($notification->notifiable_type){\App\Models\CorrectiveAction::class=>redirect()->route('actions.show',$notification->notifiable_id),\App\Models\SafetyEquipment::class=>redirect()->route('equipment.index'),default=>back()};}
 }

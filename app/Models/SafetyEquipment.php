@@ -17,10 +17,13 @@ class SafetyEquipment extends Model
         'serial_number',
         'inspection_interval_days',
         'service_interval_days',
+        'recharge_interval_days',
         'last_inspected_at',
         'next_inspection_at',
         'last_serviced_at',
         'next_service_at',
+        'last_recharged_at',
+        'next_recharge_at',
         'expiry_date',
         'status',
         'notes',
@@ -33,6 +36,8 @@ class SafetyEquipment extends Model
             'next_inspection_at' => 'date',
             'last_serviced_at' => 'date',
             'next_service_at' => 'date',
+            'last_recharged_at' => 'date',
+            'next_recharge_at' => 'date',
             'expiry_date' => 'date',
         ];
     }
