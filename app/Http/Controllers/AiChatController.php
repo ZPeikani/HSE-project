@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\WorkPermit;
 use App\Models\PpeIssue;
 use App\Services\AiActionService;
+use App\Services\AiKnowledgeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -147,7 +148,7 @@ class AiChatController extends Controller
     // ─────────────────────────────────────────────────────────────
     // System Prompt با قابلیت عملیات
     // ─────────────────────────────────────────────────────────────
-    private function buildSystemPrompt(User $authUser): string
+    private function buildSystemPrompt(User $authUser, string $knowledgeContext = ""): string
     {
         $dbContext = $this->buildDatabaseContext($authUser);
         $isAdmin   = $authUser->role === UserRole::Admin;
@@ -175,7 +176,9 @@ class AiChatController extends Controller
             . 'در صورت لزوم از اعداد، لیست‌بندی یا راهنمای گام‌به‌گام استفاده کنید. '
             . 'وقتی سوال درباره داده‌های سامانه است، از اطلاعات زیر استفاده کن:'
             . "\n\n" . $dbContext
-            . $operationalSection;
+            . $operationalSection
+            . "\n\n" . $knowledgeContext
+            . "\n\nقواعد استفاده از منابع: اگر منبع ایرانی بازیابی شده، در پرسش‌های حقوقی/الزام‌آور آن را بر اطلاعات عمومی ترجیح بده. عنوان منبع و ماده/بند را فقط وقتی ذکر کن که در منبع بازیابی‌شده وجود دارد. منبع ایرانی و استاندارد/راهنمای بین‌المللی را با هم مخلوط نکن؛ در صورت نیاز آن‌ها را جداگانه با برچسب «الزامات قانونی ایران» و «راهنمای بین‌المللی» توضیح بده. اگر منبع کافی نیست، صریح بگو منبع مشخصی پیدا نشد و چیزی را جعل نکن.";
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -336,8 +339,13 @@ class AiChatController extends Controller
             ->reverse()
             ->values();
 
+        // ── بازیابی منابع HSE مرتبط با سؤال ──
+        $knowledgeService = app(AiKnowledgeService::class);
+        $knowledgeResults = $knowledgeService->search($request->message);
+        $knowledgeContext = $knowledgeService->formatForPrompt($knowledgeResults);
+
         // ── ساخت payload برای AI ──
-        $systemPrompt = $this->buildSystemPrompt($user);
+        $systemPrompt = $this->buildSystemPrompt($user, $knowledgeContext);
         $messages     = [['role' => 'system', 'content' => $systemPrompt]];
         foreach ($dbHistory as $h) {
             $messages[] = ['role' => $h->role, 'content' => $h->content];
