@@ -48,6 +48,6 @@
   badge.textContent = count;
  };
  const poll = function () { fetch(pollUrl + '?since=' + encodeURIComponent(latestNotificationId), { headers: { 'Accept': 'application/json' } }).then(response => response.json()).then(data => { updateBadge(data.unread_count); const newNotifications = data.notifications.filter(notification => notification.id > latestNotificationId); if (newNotifications.length) { latestNotificationId = Math.max(...newNotifications.map(notification => notification.id)); newNotifications.forEach(showToast); } }).catch(function () {}); };
- setInterval(poll, 20000);
+ setInterval(poll, 300000);
 }());
 </script>
