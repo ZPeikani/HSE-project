@@ -3330,7 +3330,7 @@ class SafetyChecklistsSeeder extends Seeder
     array (
       0 => 
       array (
-        'question' => 'وضعیت نصب قطعات روی بدنه موتور، دیزل؟',
+        'question' => 'آیا وضعیت نصب قطعات موتور دیزل روی بدنه مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3338,7 +3338,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       1 => 
       array (
-        'question' => 'روغن موتور / گریس کاری موتور، دیزل؟',
+        'question' => 'آیا سطح روغن موتور و وضعیت روانکاری موتور دیزل بررسی شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3346,7 +3346,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       2 => 
       array (
-        'question' => 'تمیز بودن صافی / فیلترها موتور، دیزل ؟',
+        'question' => 'آیا صافی‌ها و فیلترهای موتور دیزل تمیز هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3354,7 +3354,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       3 => 
       array (
-        'question' => 'گریس کاری موتور ٬ دیزل ؟',
+        'question' => 'آیا گریس‌کاری بخش‌های مربوط به موتور دیزل انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3362,7 +3362,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       4 => 
       array (
-        'question' => 'صدای غیر عادی موتور، دیزل؟',
+        'question' => 'آیا صدای غیرعادی از موتور دیزل شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3370,7 +3370,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       5 => 
       array (
-        'question' => 'ارتعاش غیر عادی موتور، دیزل؟',
+        'question' => 'آیا ارتعاش غیرعادی در موتور دیزل وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3378,7 +3378,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       6 => 
       array (
-        'question' => 'وضعیت نصب قطعات روی بدنه سیستم انتقال قدرت؟',
+        'question' => 'آیا نشتی در موتور دیزل مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3386,7 +3386,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       7 => 
       array (
-        'question' => 'روغن گیربکس سیستم انتقال قدرت؟',
+        'question' => 'آیا وضعیت نصب قطعات سیستم انتقال قدرت (P.T.O) روی بدنه مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3394,7 +3394,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       8 => 
       array (
-        'question' => 'گریس کاری سیستم انتقال قدرت؟',
+        'question' => 'آیا سطح و کیفیت روغن گیربکس بررسی شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3402,7 +3402,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       9 => 
       array (
-        'question' => 'ترک در شیلنگ شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا گریس‌کاری سیستم انتقال قدرت (P.T.O) انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3410,7 +3410,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       10 => 
       array (
-        'question' => 'برگشت نامناسب قرقره به حالت طبیعی شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا صدای غیرعادی از سیستم انتقال قدرت (P.T.O) شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3418,7 +3418,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       11 => 
       array (
-        'question' => 'نشتی در قرقره ها واتصالات شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا ارتعاش غیرعادی در سیستم انتقال قدرت (P.T.O) وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3426,7 +3426,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       12 => 
       array (
-        'question' => 'گیر کردن قرقره شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا نشتی در سیستم انتقال قدرت (P.T.O) مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3434,7 +3434,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       13 => 
       array (
-        'question' => 'نقص شیر ایمنی شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا در شیلنگ شیرهای هیدرولیک و پنوماتیک ترک‌خوردگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3442,7 +3442,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       14 => 
       array (
-        'question' => 'وضعیت فشار شیر ایمنی شیرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا قرقره شیرهای هیدرولیک و پنوماتیک برگشت نامناسب به حالت طبیعی دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3450,7 +3450,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       15 => 
       array (
-        'question' => 'اختالف ناشی از نشتی جریان؟',
+        'question' => 'آیا در قرقره‌ها و اتصالات شیرهای هیدرولیک و پنوماتیک نشتی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3458,7 +3458,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       16 => 
       array (
-        'question' => 'نشتی در اتصالات جوش؟',
+        'question' => 'آیا قرقره شیرهای هیدرولیک و پنوماتیک دچار گیرکردگی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3466,7 +3466,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       17 => 
       array (
-        'question' => 'تو رفتگی در میله سیلندر؟',
+        'question' => 'آیا شیر ایمنی سیستم هیدرولیک و پنوماتیک دچار نقص است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3474,7 +3474,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       18 => 
       array (
-        'question' => 'سیلندرهای هیدرولیک و پنوماتیک؟',
+        'question' => 'آیا وضعیت فشار شیر ایمنی هیدرولیک و پنوماتیک مناسب و در حد مجاز است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3482,7 +3482,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       19 => 
       array (
-        'question' => 'شکستگی در میله سیلندر؟',
+        'question' => 'آیا در سیلندرهای هیدرولیک و پنوماتیک اختلاف ناشی از نشتی جریان وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3490,7 +3490,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       20 => 
       array (
-        'question' => 'ابعاد میله سیلندر؟',
+        'question' => 'آیا در اتصالات جوش سیلندرهای هیدرولیک و پنوماتیک نشتی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3498,7 +3498,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       21 => 
       array (
-        'question' => 'تو رفتگی قاب ) بسته (؟',
+        'question' => 'آیا در میله سیلندر هیدرولیک و پنوماتیک تورفتگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3506,7 +3506,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       22 => 
       array (
-        'question' => 'تغییر شکل یا شل بودن میله های چشمی؟',
+        'question' => 'آیا در میله سیلندر هیدرولیک و پنوماتیک شکستگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3514,7 +3514,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       23 => 
       array (
-        'question' => 'تغییر شکل یا شل بودن اتصالات؟',
+        'question' => 'آیا ابعاد میله سیلندر هیدرولیک و پنوماتیک استاندارد و بدون تغییر است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3522,7 +3522,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       24 => 
       array (
-        'question' => 'میزان سوخت مصرفی؟',
+        'question' => 'آیا در قاب سیلندر هیدرولیک و پنوماتیک تورفتگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3530,7 +3530,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       25 => 
       array (
-        'question' => 'آب رادیاتور / آب باطری؟',
+        'question' => 'آیا میله‌های چشمی سیلندر هیدرولیک و پنوماتیک دچار تغییر شکل یا شل‌بودن هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3538,7 +3538,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       26 => 
       array (
-        'question' => 'وضعیت ظاهری بدنه و کابین؟',
+        'question' => 'آیا اتصالات سیلندرهای هیدرولیک و پنوماتیک دچار تغییر شکل یا شل‌بودن هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3546,7 +3546,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       27 => 
       array (
-        'question' => '( بدنه دستگاه )؟',
+        'question' => 'آیا میزان سوخت مصرفی دستگاه متناسب و بدون هدررفت است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3554,7 +3554,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       28 => 
       array (
-        'question' => 'گریس کاری و روغن کاری قطعات محرک و متحرک؟',
+        'question' => 'آیا سطح آب رادیاتور و وضعیت آب باتری مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3562,7 +3562,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       29 => 
       array (
-        'question' => 'وضعیت نصب اجزاء نیوماتیک؟',
+        'question' => 'آیا وضعیت ظاهری بدنه و کابین جرثقیل سالم و مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3570,7 +3570,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       30 => 
       array (
-        'question' => 'سیستم روشنائی و المپ ها؟',
+        'question' => 'آیا گریس‌کاری و روغن‌کاری قطعات محرک و متحرک بدنه انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3578,7 +3578,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       31 => 
       array (
-        'question' => 'وضعیت برف پاک کن؟',
+        'question' => 'آیا وضعیت نصب اجزای پنوماتیک روی بدنه دستگاه صحیح است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3586,7 +3586,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       32 => 
       array (
-        'question' => 'بدنه دستگاه ؟',
+        'question' => 'آیا صدای غیرعادی از بدنه یا اجزای متحرک آن شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3594,7 +3594,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       33 => 
       array (
-        'question' => '۰۱ سالمت بوق و آژیر؟',
+        'question' => 'آیا سیستم روشنایی و لامپ‌های بدنه جرثقیل سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3602,7 +3602,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       34 => 
       array (
-        'question' => '( ادامه؟',
+        'question' => 'آیا وضعیت برف‌پاک‌کن دستگاه سالم و عملکرد آن مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3610,7 +3610,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       35 => 
       array (
-        'question' => 'وضعیت شیشه ها و آینه ها؟',
+        'question' => 'آیا بوق و آژیر دستگاه به درستی عمل می‌کنند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3618,7 +3618,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       36 => 
       array (
-        'question' => '۲۱ سالمت لاستیک ها؟',
+        'question' => 'آیا وضعیت شیشه‌ها و آینه‌های کابین سالم و تمیز است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3626,7 +3626,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       37 => 
       array (
-        'question' => 'میزان باد چرخ ها؟',
+        'question' => 'آیا لاستیک‌های دستگاه سالم و بدون بریدگی و ترک هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3634,7 +3634,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       38 => 
       array (
-        'question' => 'خوردگی و ترک؟',
+        'question' => 'آیا میزان باد چرخ‌های دستگاه تنظیم و در حد استاندارد است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3642,7 +3642,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       39 => 
       array (
-        'question' => 'تغییر شکل؟',
+        'question' => 'آیا خوردگی و ترک در بدنه دستگاه مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3650,7 +3650,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       40 => 
       array (
-        'question' => 'میزان روغن هیدرولیک؟',
+        'question' => 'آیا تغییر شکل در ساختار بدنه دستگاه مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3658,7 +3658,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       41 => 
       array (
-        'question' => 'وضعیت قطعات نصب شده؟',
+        'question' => 'آیا میزان روغن هیدرولیک در مخزن در حد مجاز و مطلوب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3666,7 +3666,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       42 => 
       array (
-        'question' => 'مخزن هیدرولیک؟',
+        'question' => 'آیا وضعیت قطعات نصب‌شده روی مخزن هیدرولیک مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3674,7 +3674,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       43 => 
       array (
-        'question' => 'نشتی از قطعات و اتصالات؟',
+        'question' => 'آیا از قطعات و اتصالات مخزن هیدرولیک نشتی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3682,7 +3682,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       44 => 
       array (
-        'question' => 'نشتی از مخزن؟',
+        'question' => 'آیا از خود مخزن هیدرولیک نشتی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3690,7 +3690,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       45 => 
       array (
-        'question' => 'نوع روغن هیدرولیک؟',
+        'question' => 'آیا نوع و گرید روغن هیدرولیک مصرفی مطابق با استاندارد است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3698,7 +3698,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       46 => 
       array (
-        'question' => 'تمیز کاری صافی؟',
+        'question' => 'آیا تمیزکاری صافی و فیلتر مخزن هیدرولیک انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3706,7 +3706,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       47 => 
       array (
-        'question' => 'وضعیت تابلو؟',
+        'question' => 'آیا وضعیت تابلوی سیستم چرخش (SWING) مناسب و سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3714,7 +3714,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       48 => 
       array (
-        'question' => 'وضعیت شیلنگ ها و اتصالات هیدرولیک؟',
+        'question' => 'آیا وضعیت شیلنگ‌ها و اتصالات هیدرولیک سیستم چرخش سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3722,7 +3722,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       49 => 
       array (
-        'question' => 'عملکرد ترمزها ) عدم لغزش (؟',
+        'question' => 'آیا عملکرد ترمزهای سیستم چرخش مطلوب است و از لغزش جلوگیری می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3730,7 +3730,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       50 => 
       array (
-        'question' => '( سیستم چرخش؟',
+        'question' => 'آیا پیچ و پرچ‌های سیستم چرخش محکم و بدون شل‌بودن هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3738,7 +3738,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       51 => 
       array (
-        'question' => 'شل بودن پیچ و پرچ ها؟',
+        'question' => 'آیا فیلتر سیستم هیدرولیک چرخش تمیز و سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3746,7 +3746,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       52 => 
       array (
-        'question' => 'فیلتر سیستم هیدرولیک؟',
+        'question' => 'آیا وضعیت قطعات محرک و متحرک سیستم چرخش مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3754,7 +3754,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       53 => 
       array (
-        'question' => 'وضعیت قطعات محرک و متحرک؟',
+        'question' => 'آیا صدای غیرعادی از سیستم چرخش شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3762,7 +3762,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       54 => 
       array (
-        'question' => 'ارتعاش؟',
+        'question' => 'آیا ارتعاش غیرعادی در سیستم چرخش احساس می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3770,7 +3770,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       55 => 
       array (
-        'question' => 'نشتی از اتصالات؟',
+        'question' => 'آیا از اتصالات سیستم چرخش نشتی روغن وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3778,7 +3778,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       56 => 
       array (
-        'question' => 'سایش بدنه بوم؟',
+        'question' => 'آیا در بدنه بوم سایش مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3786,7 +3786,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       57 => 
       array (
-        'question' => 'دفرمگی بدنه بوم؟',
+        'question' => 'آیا در بدنه بوم دفرمگی و تغییر شکل وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3794,7 +3794,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       58 => 
       array (
-        'question' => ') سیستم بوم؟',
+        'question' => 'آیا در بدنه بوم ترک‌خوردگی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3802,7 +3802,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       59 => 
       array (
-        'question' => 'ترک بدنه بوم؟',
+        'question' => 'آیا پین‌های نگهدارنده بوم سالم و در جای خود محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3810,7 +3810,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       60 => 
       array (
-        'question' => 'پین های نگهدارنده؟',
+        'question' => 'آیا باز و بسته‌شدن بوم به شکل روان و صحیح انجام می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3818,7 +3818,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       61 => 
       array (
-        'question' => 'باز و بسته شدن بوم؟',
+        'question' => 'آیا ضامن‌های نگهدارنده بوم سالم و فعال هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3826,7 +3826,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       62 => 
       array (
-        'question' => 'ضامن های نگهدارنده؟',
+        'question' => 'آیا باز و بسته‌شدن سیلندرهای بوم به درستی صورت می‌گیرد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3834,7 +3834,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       63 => 
       array (
-        'question' => 'باز و بسته شدن سیلندرها؟',
+        'question' => 'آیا صدای غیرعادی هنگام کارکرد سیستم بوم شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3842,7 +3842,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       64 => 
       array (
-        'question' => 'نشتی از شیلنگ ها و نشت (؟',
+        'question' => 'آیا ارتعاش غیرعادی در سیستم بوم وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3850,7 +3850,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       65 => 
       array (
-        'question' => 'سایش رولرهای روی بوم؟',
+        'question' => 'آیا از اتصالات سیستم بوم نشتی روغن مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3858,7 +3858,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       66 => 
       array (
-        'question' => 'روان بودن رولرهای روی بوم؟',
+        'question' => 'آیا از شیلنگ‌ها و نشت‌بندهای بوم نشتی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3866,7 +3866,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       67 => 
       array (
-        'question' => 'پین ها؟',
+        'question' => 'آیا رولرهای روی بوم دچار سایش شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3874,7 +3874,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       68 => 
       array (
-        'question' => 'محورها؟',
+        'question' => 'آیا رولرهای روی بوم روان و بدون گیر هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3882,7 +3882,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       69 => 
       array (
-        'question' => 'باز و بسته شدن جک ها؟',
+        'question' => 'آیا پین‌های بوم سالم و دارای اشپیل مناسب هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3890,7 +3890,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       70 => 
       array (
-        'question' => 'اتصالات و شیلنگ های ارتباطی؟',
+        'question' => 'آیا محورهای بوم سالم و بدون عیب هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3898,7 +3898,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       71 => 
       array (
-        'question' => 'دفرمگی صفحات شناور؟',
+        'question' => 'آیا باز و بسته‌شدن جک‌های تعادلی (Outrigger) به درستی انجام می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3906,7 +3906,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       72 => 
       array (
-        'question' => 'سایش صفحات شناور جک های تعادلی؟',
+        'question' => 'آیا اتصالات و شیلنگ‌های ارتباطی جک‌های تعادلی سالم و محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3914,7 +3914,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       73 => 
       array (
-        'question' => 'ترک در صفحات شناور؟',
+        'question' => 'آیا صفحات شناور جک‌های تعادلی دچار دفرمگی هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3922,7 +3922,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       74 => 
       array (
-        'question' => 'دفرمگی بدنه جک ها؟',
+        'question' => 'آیا صفحات شناور جک‌های تعادلی دچار سایش شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3930,7 +3930,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       75 => 
       array (
-        'question' => 'سایش بدنه جک ها؟',
+        'question' => 'آیا در صفحات شناور جک‌های تعادلی ترک‌خوردگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3938,7 +3938,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       76 => 
       array (
-        'question' => 'ترک در بدنه جک ها؟',
+        'question' => 'آیا بدنه جک‌های تعادلی دچار دفرمگی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3946,7 +3946,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       77 => 
       array (
-        'question' => 'دفرمگی پوسته تلسکوپ؟',
+        'question' => 'آیا بدنه جک‌های تعادلی دچار سایش شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3954,7 +3954,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       78 => 
       array (
-        'question' => 'سایش پوسته تلسکوپ؟',
+        'question' => 'آیا در بدنه جک‌های تعادلی ترک‌خوردگی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3962,7 +3962,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       79 => 
       array (
-        'question' => '( جک های تعادلی؟',
+        'question' => 'آیا پوسته تلسکوپ جک‌های تعادلی دچار دفرمگی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3970,7 +3970,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       80 => 
       array (
-        'question' => 'ترک در پوسته تلسکوپ؟',
+        'question' => 'آیا پوسته تلسکوپ جک‌های تعادلی دچار سایش شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3978,7 +3978,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       81 => 
       array (
-        'question' => 'نشتی اتصالات / شیلنگها / نشت بند ها؟',
+        'question' => 'آیا در پوسته تلسکوپ جک‌های تعادلی ترک مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3986,7 +3986,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       82 => 
       array (
-        'question' => 'روانکاری؟',
+        'question' => 'آیا صدای غیرعادی هنگام کارکرد جک‌های تعادلی شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -3994,7 +3994,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       83 => 
       array (
-        'question' => 'عدم بازگشت به حالت اولیه؟',
+        'question' => 'آیا ارتعاش غیرعادی در جک‌های تعادلی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4002,7 +4002,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       84 => 
       array (
-        'question' => 'کفشک زیر جک ها؟',
+        'question' => 'آیا اتصالات، شیلنگ‌ها و نشت‌بندهای جک‌های تعادلی نشتی دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4010,7 +4010,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       85 => 
       array (
-        'question' => 'قفل وضعیت؟',
+        'question' => 'آیا روانکاری جک‌های تعادلی انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4018,7 +4018,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       86 => 
       array (
-        'question' => 'قطر طناب سیمی؟',
+        'question' => 'آیا جک‌های تعادلی مشکل عدم بازگشت به حالت اولیه دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4026,7 +4026,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       87 => 
       array (
-        'question' => 'وضعیت دفرمه شدن؟',
+        'question' => 'آیا کفشک‌های زیر جک‌های تعادلی سالم و در محل قرار دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4034,7 +4034,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       88 => 
       array (
-        'question' => 'وضعیت شکستگی ) طناب سیمی؟',
+        'question' => 'آیا قفل وضعیت جک‌های تعادلی به درستی عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4042,7 +4042,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       89 => 
       array (
-        'question' => 'وضعیت خوردگی (؟',
+        'question' => 'آیا قطر طناب سیمی (سیم‌بکسل) با استاندارد و مشخصات فنی مطابقت دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4050,7 +4050,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       90 => 
       array (
-        'question' => 'پیچش؟',
+        'question' => 'آیا طناب سیمی دچار دفرمه‌شدن و تغییر شکل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4058,7 +4058,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       91 => 
       array (
-        'question' => 'اتصال انتهای طناب سیمی؟',
+        'question' => 'آیا در طناب سیمی شکستگی مفتول‌ها وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4066,7 +4066,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       92 => 
       array (
-        'question' => 'خمیدگی؟',
+        'question' => 'آیا در طناب سیمی زنگ‌زدگی و خوردگی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4074,7 +4074,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       93 => 
       array (
-        'question' => 'لهیدگی؟',
+        'question' => 'آیا در طناب سیمی پیچش و تاب‌خوردگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4082,7 +4082,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       94 => 
       array (
-        'question' => '( طناب سیمی؟',
+        'question' => 'آیا اتصال انتهای طناب سیمی اصولی و محکم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4090,7 +4090,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       95 => 
       array (
-        'question' => 'بریدگی؟',
+        'question' => 'آیا در طناب سیمی خمیدگی و انحنای غیرمجاز مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4098,7 +4098,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       96 => 
       array (
-        'question' => 'وضعیت روانکاری؟',
+        'question' => 'آیا در طناب سیمی لهیدگی ایجاد شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4106,7 +4106,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       97 => 
       array (
-        'question' => 'عبور طناب از قرقره ها؟',
+        'question' => 'آیا در طناب سیمی بریدگی رشته‌ها دیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4114,7 +4114,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       98 => 
       array (
-        'question' => 'چرخش قالب حول محور عمودی؟',
+        'question' => 'آیا وضعیت روانکاری و روغن‌کاری طناب سیمی مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4122,7 +4122,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       99 => 
       array (
-        'question' => 'وضعیت قالب از نظر ترک؟',
+        'question' => 'آیا عبور طناب سیمی از داخل قرقره‌ها روان و صحیح است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4130,7 +4130,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       100 => 
       array (
-        'question' => 'وضعیت قالب از نظر دفرمه شدن؟',
+        'question' => 'آیا قلاب حول محور عمودی خود به سهولت و روانی چرخش دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4138,7 +4138,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       101 => 
       array (
-        'question' => 'سایش قالب؟',
+        'question' => 'آیا در قلاب دستگاه ترک‌خوردگی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4146,7 +4146,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       102 => 
       array (
-        'question' => 'قالب و قرقره ها؟',
+        'question' => 'آیا قلاب دچار دفرمگی و بازشدگی دهانه شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4154,7 +4154,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       103 => 
       array (
-        'question' => 'وضعیت روغن کاری قرقره ها؟',
+        'question' => 'آیا در دهانه و گلوی قلاب سایش بیش از حد مجاز وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4162,7 +4162,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       104 => 
       array (
-        'question' => 'بد عمل کردن و خرابی زباله؟',
+        'question' => 'آیا روغن‌کاری و روانکاری قرقره‌های قلاب انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4170,7 +4170,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       105 => 
       array (
-        'question' => 'وضعیت قطر قرقره ها؟',
+        'question' => 'آیا زبانه (ضامن ایمنی) قلاب سالم است و به درستی عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4178,7 +4178,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       106 => 
       array (
-        'question' => 'وضعیت میله های محافظ؟',
+        'question' => 'آیا قطر قرقره‌های قلاب با سیم‌بکسل هم‌خوانی داشته و استاندارد است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4186,7 +4186,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       107 => 
       array (
-        'question' => 'وضعیت پین ها؟',
+        'question' => 'آیا میله‌های محافظ قرقره‌های قلاب سالم و در جای خود قرار دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4194,7 +4194,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       108 => 
       array (
-        'question' => 'محور؟',
+        'question' => 'آیا پین‌های مجموعه قلاب و قرقره‌ها سالم و محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4202,7 +4202,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       109 => 
       array (
-        'question' => 'روانکاری؟',
+        'question' => 'آیا محور مجموعه قلاب سالم و بدون لقی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4210,7 +4210,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       110 => 
       array (
-        'question' => 'ترک در قرقره؟',
+        'question' => 'آیا روانکاری مجموعه قلاب به طور مرتب صورت می‌پذیرد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4218,7 +4218,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       111 => 
       array (
-        'question' => 'فرورفتگی در قرقره؟',
+        'question' => 'آیا در قرقره‌های قلاب ترک‌خوردگی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4226,7 +4226,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       112 => 
       array (
-        'question' => 'قالب و قرقره؟',
+        'question' => 'آیا در قرقره‌های قلاب فرورفتگی وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4234,7 +4234,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       113 => 
       array (
-        'question' => 'سایش قرقره؟',
+        'question' => 'آیا شیار قرقره‌ها دچار سایش شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4242,7 +4242,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       114 => 
       array (
-        'question' => 'تغییر شکل قرقره؟',
+        'question' => 'آیا شکل ظاهری قرقره دچار تغییر شکل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4250,7 +4250,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       115 => 
       array (
-        'question' => 'روانکاری قرقره؟',
+        'question' => 'آیا روانکاری قرقره‌های سر بوم و قلاب به درستی انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4258,7 +4258,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       116 => 
       array (
-        'question' => 'وضعیت نصب پمپ؟',
+        'question' => 'آیا وضعیت نصب پمپ هیدرولیک روی شاسی مناسب و محکم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4266,7 +4266,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       117 => 
       array (
-        'question' => 'ارتعاش غیر عادی پمپ هیدرولیک؟',
+        'question' => 'آیا صدای غیرعادی از پمپ هیدرولیک شنیده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4274,7 +4274,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       118 => 
       array (
-        'question' => 'افت فشار؟',
+        'question' => 'آیا ارتعاش غیرعادی در پمپ هیدرولیک احساس می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4282,7 +4282,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       119 => 
       array (
-        'question' => 'سوئیچ های قطع کن خودکار؟',
+        'question' => 'آیا از پمپ هیدرولیک و اتصالات آن نشتی روغن وجود دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4290,7 +4290,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       120 => 
       array (
-        'question' => 'سوئیچ های دستی؟',
+        'question' => 'آیا پمپ هیدرولیک دچار افت فشار عملیاتی شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4298,7 +4298,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       121 => 
       array (
-        'question' => 'گیج های جریان و فشار روغن سیستم های ایمنی کنترلی و برقی؟',
+        'question' => 'آیا سوئیچ‌های قطع‌کن خودکار دستگاه سالم و فعال هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4306,7 +4306,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       122 => 
       array (
-        'question' => 'اهرام ها و پدال های کنترلی؟',
+        'question' => 'آیا سوئیچ‌ها و کلیدهای دستی به درستی عمل می‌کنند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4314,7 +4314,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       123 => 
       array (
-        'question' => 'چراغ های چشمک زن دستگاه؟',
+        'question' => 'آیا گیج‌ها و نشانگرهای جریان و فشار روغن سالم و دقیق هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4322,7 +4322,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       124 => 
       array (
-        'question' => 'سیستم روشنائی دستگاه؟',
+        'question' => 'آیا اهرم‌ها و پدال‌های کنترلی سالم بوده و حرکت روانی دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4330,7 +4330,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       125 => 
       array (
-        'question' => 'روشنائی روی بوم؟',
+        'question' => 'آیا چراغ‌های چشمک‌زن و گردان دستگاه سالم و فعال هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4338,7 +4338,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       126 => 
       array (
-        'question' => 'برف پاک کن روی کابین؟',
+        'question' => 'آیا سیستم روشنایی کلی دستگاه به خوبی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4346,7 +4346,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       127 => 
       array (
-        'question' => 'سیستم های ایمنی کنترلی و برقی؟',
+        'question' => 'آیا سیستم روشنایی روی بوم سالم و با پرتاب نور مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4354,7 +4354,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       128 => 
       array (
-        'question' => 'شیشه های روی کابین؟',
+        'question' => 'آیا برف‌پاک‌کن روی کابین سالم است و تیغه مناسب دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4362,7 +4362,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       129 => 
       array (
-        'question' => 'آینه های روی کابین؟',
+        'question' => 'آیا شیشه‌های روی کابین سالم، بدون ترک و شفاف هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4370,7 +4370,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       130 => 
       array (
-        'question' => 'آژیر روی کابین؟',
+        'question' => 'آیا آینه‌های روی کابین سالم بوده و تنظیم دید دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4378,7 +4378,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       131 => 
       array (
-        'question' => 'گویه سنج بوم؟',
+        'question' => 'آیا آژیر و بوق هشدار روی کابین به درستی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4386,7 +4386,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       132 => 
       array (
-        'question' => 'هم راستایی؟',
+        'question' => 'آیا گویه‌سنج و زاویه‌سنج روی بوم سالم و کالیبره است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4394,7 +4394,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       133 => 
       array (
-        'question' => 'اتصالات؟',
+        'question' => 'آیا هم‌راستایی ساختار بوم خشک افزایشی (Jib) صحیح است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4402,7 +4402,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       134 => 
       array (
-        'question' => 'شبکه ها بوم خشک افزایشی؟',
+        'question' => 'آیا اتصالات بوم خشک افزایشی سالم و محکم بسته شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4410,7 +4410,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       135 => 
       array (
-        'question' => 'انتهای اتصالات؟',
+        'question' => 'آیا شبکه‌ها و لوله‌های بوم خشک افزایشی بدون خمیدگی هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4418,7 +4418,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       136 => 
       array (
-        'question' => 'لوازم یدکی؟',
+        'question' => 'آیا انتهای اتصالات بوم خشک افزایشی بدون نقص و ترک است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4426,7 +4426,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       137 => 
       array (
-        'question' => 'قرقره ها؟',
+        'question' => 'آیا لوازم یدکی و ملحقات بوم خشک افزایشی در دسترس و سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4434,7 +4434,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       138 => 
       array (
-        'question' => 'نگهدارنده سیم بکسل؟',
+        'question' => 'آیا قرقره‌های بوم خشک افزایشی روان و سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4442,7 +4442,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       139 => 
       array (
-        'question' => 'ساختار بوم؟',
+        'question' => 'آیا نگهدارنده‌های سیم‌بکسل در بوم خشک افزایشی سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4450,7 +4450,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       140 => 
       array (
-        'question' => 'نگهدارنده اصلی و نگهدارنده سیم بکسل ها؟',
+        'question' => 'آیا ساختار کلی بوم خشک افزایشی بدون عیب و نقص سازه‌ای است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4458,7 +4458,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       141 => 
       array (
-        'question' => 'بازوی کمکی؟',
+        'question' => 'آیا نگهدارنده اصلی و نگهدارنده سیم‌بکسل‌های بازوی کمکی سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4466,7 +4466,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       142 => 
       array (
-        'question' => 'ساختار بازو؟',
+        'question' => 'آیا قرقره‌های بازوی کمکی روان بوده و سایش ندارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4474,7 +4474,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       143 => 
       array (
-        'question' => '۲ سالم بودن شکل ظاهری چارت جرثقیل؟',
+        'question' => 'آیا ساختار بازوی کمکی سالم و بدون دفرمگی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4482,7 +4482,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       144 => 
       array (
-        'question' => 'با دوام بودن؟',
+        'question' => 'آیا شکل ظاهری چارت جدول بار (Load Chart) جرثقیل سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4490,7 +4490,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       145 => 
       array (
-        'question' => 'جدول بار و تجهیزات ایمنی؟',
+        'question' => 'آیا پلاک و جدول بار با دوام و مقاوم در برابر شرایط جوی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4498,7 +4498,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       146 => 
       array (
-        'question' => 'تمیز و خوانا بودن؟',
+        'question' => 'آیا ارقام و متن جدول بار تمیز، واضح و کاملاً خوانا هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4506,7 +4506,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       147 => 
       array (
-        'question' => 'در معرض دید راننده؟',
+        'question' => 'آیا جدول بار در معرض دید مستقیم راننده قرار دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4514,7 +4514,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       148 => 
       array (
-        'question' => 'نشانگر زاویه بوم؟',
+        'question' => 'آیا نشانگر زاویه بوم به درستی و با دقت زاویه را نشان می‌دهد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4522,7 +4522,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       149 => 
       array (
-        'question' => 'نشانگر زاویه طول؟',
+        'question' => 'آیا نشانگر طول بوم فعال و دقیق است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4530,7 +4530,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       150 => 
       array (
-        'question' => 'نشانگر چرخش درام اصلی؟',
+        'question' => 'آیا نشانگر چرخش درام اصلی وینچ به درستی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4538,7 +4538,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       151 => 
       array (
-        'question' => 'نشانگر چرخش درام کمکی؟',
+        'question' => 'آیا نشانگر چرخش درام کمکی وینچ به درستی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4546,7 +4546,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       152 => 
       array (
-        'question' => 'نشانگر وضعیت بار؟',
+        'question' => 'آیا نشانگر وضعیت بار (LMI) فعال و کالیبره است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4554,7 +4554,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       153 => 
       array (
-        'question' => 'نشانگر شعاع عملیاتی؟',
+        'question' => 'آیا نشانگر شعاع عملیاتی دستگاه دقیق عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4562,7 +4562,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       154 => 
       array (
-        'question' => 'نشانگر تراز بودن دستگاه؟',
+        'question' => 'آیا نشانگر تراز بودن دستگاه سالم و قابل قرائت است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4570,7 +4570,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       155 => 
       array (
-        'question' => 'قطع کن الکتریکی؟',
+        'question' => 'آیا سیستم قطع‌کن الکتریکی اضافه بار به موقع عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4578,7 +4578,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       156 => 
       array (
-        'question' => 'آژیر قطع کن الکتریکی؟',
+        'question' => 'آیا آژیر قطع‌کن الکتریکی هنگام رسیدن به حد غیرمجاز به صدا درمی‌آید؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4586,7 +4586,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       157 => 
       array (
-        'question' => 'وضعیت عملکرد؟',
+        'question' => 'آیا وضعیت عملکرد کلی سیستم قدرت دستگاه مطلوب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4594,7 +4594,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       158 => 
       array (
-        'question' => 'سیستم اگزوز ) حفاظ و عایق بندی ( سیستم قدرت؟',
+        'question' => 'آیا سیستم اگزوز دارای حفاظ مناسب و عایق‌بندی حرارتی است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4602,7 +4602,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       159 => 
       array (
-        'question' => 'تسمه ها و شیلنگ ها؟',
+        'question' => 'آیا تسمه‌ها و شیلنگ‌های سیستم قدرت سالم و بدون ترک‌خوردگی هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4610,7 +4610,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       160 => 
       array (
-        'question' => 'حفاظ ها و پوشش‌های اجزاء گردننده؟',
+        'question' => 'آیا حفاظ‌ها و پوشش‌های اجزای گردنده موتور و وینچ نصب و محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4618,7 +4618,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       161 => 
       array (
-        'question' => 'وضعیت ارزیابی موارد بررسی؟',
+        'question' => 'آیا جرثقیل دارای جدول بار (لود چارت) مخصوص بوده و پیش از شروع کار دستور کار ارائه شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4626,7 +4626,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       162 => 
       array (
-        'question' => 'آیا جرثقیل دارای لود چارت مخصوص بار می‌باشد وقبل از شروع به‌کار٬ دستور کار با جرثقیل ارائه شده است؟',
+        'question' => 'آیا اپراتور دارای گواهینامه ویژه و تجربه کار کافی با دستگاه می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4634,7 +4634,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       163 => 
       array (
-        'question' => 'آیا اپراتور دارای گواهینامه ویژه و تجربه کار با دستگاه را دارد؟',
+        'question' => 'آیا اپراتور توانایی و تجربه کامل استفاده از جدول بار را دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4642,7 +4642,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       164 => 
       array (
-        'question' => 'آیا اپراتور توانایی و تجربه استفاده از لود چارت را دارد؟',
+        'question' => 'آیا در بدنه جرثقیل اشکال آشکار یا نقصی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4650,7 +4650,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       165 => 
       array (
-        'question' => 'آیا در بدنه جرثقیل اشکال آشکاری مشاهده می‌شود )در صورت مثبت بودن توضیح دهید (؟',
+        'question' => 'آیا داخل کابین فاقد اشیاء، ضایعات و ابزار اضافی می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4658,7 +4658,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       166 => 
       array (
-        'question' => 'آیا داخل کابین فاقد اشیاء و ابزار اضافی است؟',
+        'question' => 'آیا کابین در هنگام چرخش با موانع اطراف برخورد نمی‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4666,7 +4666,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       167 => 
       array (
-        'question' => 'کنترل کابین درعدم برخورد به هنگام چرخش؟',
+        'question' => 'آیا اهرم‌های کنترلی در شرایط سلامت کامل قرار دارند و دارای مشخصه جهت حرکت هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4674,7 +4674,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       168 => 
       array (
-        'question' => 'آیا اهرم های کنترلی در شرایط سالمت کامل و دارای مشخصه جهت حرکت هستند؟',
+        'question' => 'آیا کابین، رکاب و پله‌ها عاری از آلودگی به روغن و گریس می‌باشند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4682,7 +4682,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       169 => 
       array (
-        'question' => 'آیا کابین و پله ها عاری از آلودگی به روغن می‌باشند؟',
+        'question' => 'آیا وضعیت بدنه بوم از لحاظ لاستیک‌های نگهدارنده، گریس‌کاری، سایش، دفرمگی و ترک کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4690,7 +4690,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       170 => 
       array (
-        'question' => 'بوم )لاستیک های نگهدارنده ٬گریسکاری ٬ سایش ٬ دفرمرگی ٬ ترک و خوردگی ( . کنترل وضعیت بدنه؟',
+        'question' => 'آیا دقت و کالیبراسیون زاویه‌سنج روی بوم و مانیتور داخل کابین کنترل و تأیید شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4698,7 +4698,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       171 => 
       array (
-        'question' => 'کنترل دقت و کالیبراسیون زاویه سنج روی بوم و روی صفحه مانیتور داخل کابین .',
+        'question' => 'آیا نمایشگرهای هشداردهنده زاویه‌سنج با زاویه واقعی بوم مطابقت دارند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4706,7 +4706,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       172 => 
       array (
-        'question' => 'کنترل دقت و کالیبراسیون زاویه سنج روی بوم و روی صفحه مانتیتور داخل کابین .',
+        'question' => 'آیا قرقره‌ها و رولرها از لحاظ دفرمگی، عدم سایش و گریس‌کاری کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4714,7 +4714,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       173 => 
       array (
-        'question' => 'کنترل قرقره ها و رولرها ) دفرمگی ٬ عدم سایش ٬ گریسکاری ( .',
+        'question' => 'آیا سیم‌بکسل درام و قلاب از لحاظ گریس‌کاری، عدم زدگی، قطر مناسب، تاب و شکستگی کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4722,7 +4722,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       174 => 
       array (
-        'question' => 'کنترل سیم بکسل درام و قالب ) گریسکاری ٬ عدم زدگی ٬ قطر مناسب ٬ عدم تاب و شکستگی ( .',
+        'question' => 'آیا عملکرد آلارم هشدار و سیستم قطع‌کن اضافه بار کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4730,7 +4730,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       175 => 
       array (
-        'question' => 'کنترل آالرم و قطع کن اضافه بار .',
+        'question' => 'آیا ترازهای افقی و عمودی روی جک‌های تعادل (Outrigger) کنترل و تنظیم شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4738,7 +4738,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       176 => 
       array (
-        'question' => '( . کنترل ترازهای افقی و عمودی روی جکهای تعادل )؟',
+        'question' => 'آیا جک‌های زیر دکل از لحاظ عدم نشتی، ارتعاش و صدای غیرعادی کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4746,7 +4746,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       177 => 
       array (
-        'question' => 'کنترل جک های زیر دکل ) عدم نشتی ٬ ارتعاش ٬ صدای غیر عادی ( .',
+        'question' => 'آیا جک‌های درون بوم و تلسکوپ‌ها از نظر عدم نشتی، ارتعاش و صدای غیرطبیعی کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4754,7 +4754,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       178 => 
       array (
-        'question' => 'کنترل جکهای درون بوم و تلسکوپ ها ) عدم نشتی ٬ ارتعاش ٬ صدای غیر طبیعی (؟',
+        'question' => 'آیا پمپ هیدرولیک از نظر عدم نشتی، ارتعاش، صدای غیرعادی، فشار و قدرت کافی کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4762,7 +4762,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       179 => 
       array (
-        'question' => 'کنترل پمپ هیدرولیک ) عدم نشتی ٬ ارتعاش ٬ صدای غیرعادی ٬ فشار و قدرت کافی ( .',
+        'question' => 'آیا لیورهای کنترل جک‌های تعادل به لحاظ عدم نشتی روغن بررسی شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4770,7 +4770,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       180 => 
       array (
-        'question' => 'کنترل لیورجک های تعادل به لحاظ عدم نشتی .',
+        'question' => 'آیا آژیرها و چراغ‌های هشداردهنده دستگاه کاملاً سالم و فعال هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4778,7 +4778,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       181 => 
       array (
-        'question' => 'آیا آژیرها و چراق ها سالم هستند؟',
+        'question' => 'آیا آخرین بازدید صحت کارکرد و ایمنی دوره‌ای دستگاه در موعد مقرر صورت گرفته است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4786,7 +4786,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       182 => 
       array (
-        'question' => 'آیا آخرین بازدید صحت کارکرد و ایمنی صورت گرفته است؟',
+        'question' => 'آیا جرثقیل متناسب با نوع کار به لحاظ ظرفیت تناژ انتخاب شده و اطلاعات عملکردی آن موجود است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4794,7 +4794,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       183 => 
       array (
-        'question' => 'آیا جرثقیل متناسب با نوع کاربه لحاظ تناژ انتخاب و اطلاعات کامل در مورد عملکرد آن موجود است؟',
+        'question' => 'آیا زمین محلی که جرثقیل در آن مستقر شده از لحاظ سفتی و تراکم مناسب است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4802,7 +4802,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       184 => 
       array (
-        'question' => 'آیا زمین محلی که جرثقیل برای انجام کار در آنجا مستقر شده به لحاظ سفت بودن مناسب است؟',
+        'question' => 'آیا جرثقیل فضای کافی برای چرخش ایمن دارد و مانعی در مسیر آن قرار نگرفته است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4810,7 +4810,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       185 => 
       array (
-        'question' => 'آیا جرثقیل فضای کافی برای چرخش دارد ومانعی سر راهش قرار نگرفته است؟',
+        'question' => 'آیا سازنده دستگاه اطلاعات کافی در خصوص موارد ایمنی و نکات فنی را در اختیار گذاشته است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4818,7 +4818,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       186 => 
       array (
-        'question' => 'آیاسازنده دستگاه اطلاعات کافی در خصوص موارد ایمنی و نکات فنی مربوطه را در اختیار گذاشته است؟',
+        'question' => 'آیا فاصله مجاز بازوی جرثقیل از خطوط و کابل‌های برق فشار قوی (حداقل ۳ متر) رعایت شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4826,7 +4826,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       187 => 
       array (
-        'question' => '۷۲ متر( قرار دارد؟ اندازه مناسب ) آیا فاصله بازوی جرثقیل از کابلهای فشار قوی به؟',
+        'question' => 'آیا شخص علامت‌دهنده (ریگر/علامت‌دهنده) با علائم استاندارد آشنایی کامل دارد و درست علامت می‌دهد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4834,7 +4834,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       188 => 
       array (
-        'question' => 'آشنایی دارد و به اپراتوردرست عالمت می دهد؟ ( با تمام علائم به درستی آیا شخص عالمت دهنده؟',
+        'question' => 'آیا ساپورت و تراورس چوبی/فلزی کافی زیر پایه‌های متعادل‌کننده (Outrigger) قرار گرفته است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4842,7 +4842,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       189 => 
       array (
-        'question' => 'آیا ساپورت کافی برای پایه های متعادل کننده ) ( وجود دارد؟',
+        'question' => 'آیا جرثقیل در فاصله مناسب و ایمن از لبه محل‌های حفاری و گودبرداری مستقر شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4850,7 +4850,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       190 => 
       array (
-        'question' => 'آیا جرثقیل در فاصله مناسب از محل حفاری شده مستقر گردیده است؟',
+        'question' => 'آیا هنگام حمل و جابه‌جایی بار، حداقل فاصله ایمن بار تا سطح زمین رعایت می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4858,7 +4858,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       191 => 
       array (
-        'question' => 'آیا هنگام حمل بار حداقل فاصله ایمن تا سطح زمین رعایت می‌شود؟ )خصوصا برای جرثقیل های کارگاهی (؟',
+        'question' => 'آیا پیش از بلند کردن کامل بار، وضعیت بار از لحاظ تعادل و ثبات ارزیابی شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4866,7 +4866,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       192 => 
       array (
-        'question' => 'آیا به هنگام بلند کردن بار ٬ وضعیت بار از لحاظ تعادل ارزیابی شده است؟',
+        'question' => 'آیا پیش از جابه‌جایی اصلی، تست اولیه بلند کردن بار (Load Test اولیه) انجام می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4874,7 +4874,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       193 => 
       array (
-        'question' => 'آیا به هنگام بلند کردن بار تست اولیه ) ( انجام می‌شود؟',
+        'question' => 'آیا از تردد و استقرار افراد در زیر بار معلق و محدوده خطرساز ممانعت به عمل می‌آید؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4882,7 +4882,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       194 => 
       array (
-        'question' => 'آیا به هنگام حمل بار افراد در زیر آن مشغول به‌کار یا در حال تردد می‌باشند؟',
+        'question' => 'آیا سیستم خنک‌کننده موتور (آب رادیاتور، اتصالات، شیلنگ‌ها و عدم نشتی) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4890,7 +4890,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       195 => 
       array (
-        'question' => 'کنترل سیستم خنک کننده موتور ) آب رادیاتور ٬ شیلنگ ها ٬ عدم نشتی ( .',
+        'question' => 'آیا سیستم سوخت‌رسانی (باک، مسیر لوله‌ها، فیلتر و انژکتور/کاربراتور) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4898,7 +4898,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       196 => 
       array (
-        'question' => 'کنترل سیستم سوخت رسانی ) باک و لوله های ارتباطی باک و انژکتور / کاربراتور ( .',
+        'question' => 'آیا موتور، گیربکس، دیفرانسیل و کلاچ از لحاظ عملکرد، عدم نشتی، ارتعاش و صدا کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4906,7 +4906,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       197 => 
       array (
-        'question' => 'غیر عادی کنترل موتور٬ گیربکس ٬ دیفرانسیل ٬ کالچ ٬ از لحاظ عملکرد مناسب ٬ عدم نشتی ٬ ارتعاش ٬ صدای؟',
+        'question' => 'آیا سیستم روشنایی (چراغ‌های جلو، عقب، روی بوم، خطر و راهنماها) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4914,7 +4914,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       198 => 
       array (
-        'question' => 'سیستم روشنایی ) چراغ های جلو وعقب ٬ چراغ های بوم ٬ چراغ های خطر و چراغ های راهنما ( . کنترل؟',
+        'question' => 'آیا صفحه نمایشگر کامپیوتری و کلیدهای کنترل داخل کابین کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4922,7 +4922,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       199 => 
       array (
-        'question' => 'کنترل صفحه نمایشگر کامپیوتری و کلیدهای کنترل .',
+        'question' => 'آیا شیشه‌های کابین، سقف، آینه‌ها و تیغه‌های برف‌پاک‌کن از لحاظ دید کامل اپراتور کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4930,7 +4930,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       200 => 
       array (
-        'question' => 'کنترل شیشه های طرفین ٬ سقف ٬ جلو و آینه ها و تیغه های برف پاک کن از لحاظ دید اپراتور و راننده .',
+        'question' => 'آیا لاستیک‌ها و چرخ‌ها از نظر باد استاندارد، عدم فرسودگی و عدم نشتی چرخ‌ها بازدید شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4938,7 +4938,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       201 => 
       array (
-        'question' => 'کنترل و بازدید از لاستیک ها و چرخ ها ) عدم فرسودگی و باد مناسب لاستیک ها ٬ عدم نشتی چرخ ها (.',
+        'question' => 'آیا عملکرد سیستم ترمز پایی و قفل‌کن ترمز چرخ‌ها (ترمز دستی) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4946,7 +4946,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       202 => 
       array (
-        'question' => 'کنترل سیستم ترمز و قفل کن ترمز چرخ ها .',
+        'question' => 'آیا علائم هشداردهنده صوتی شامل بوق، آلارم دنده عقب و آلارم اضافه بار کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4954,7 +4954,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       203 => 
       array (
-        'question' => 'کنترل علائم هشداردهنده ) بوق ٬ آالرم دنده عقب ٬ آالرم اضافه بار ( .',
+        'question' => 'آیا روانکاری و گریس‌کاری دوره‌ای در کلیه قسمت‌های متحرک دستگاه انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4962,7 +4962,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       204 => 
       array (
-        'question' => 'آیا روانکاری و گریسکاری در کلیه قسمت ها انجام شده است؟',
+        'question' => 'آیا سیستم درگیرکننده کامیون با جرثقیل (P.T.O) از لحاظ عملکرد کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4970,7 +4970,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       205 => 
       array (
-        'question' => '( . کنترل سیستم درگیر کننده کامیون با جرثقیل )؟',
+        'question' => 'آیا پمپ هیدرولیک و بلوک تقسیم از نظر نشتی، قدرت، صدای غیرعادی و ارتعاش کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4978,7 +4978,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       206 => 
       array (
-        'question' => 'هیدرولیک ٬ بلوک تقسیم هیدرولیک از لحاظ نشتی و قدرت لازم و صدای غیر عادی و ارتعاش . کنترل پمپ؟',
+        'question' => 'آیا مفصل‌ها، پین‌ها، اشپیل‌ها و عدم لقی اتصالات دستگاه کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4986,7 +4986,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       207 => 
       array (
-        'question' => 'کنترل مفصل ها ٬ پینها ٬ اشپیل های پین ها و عدم لقی آنها .',
+        'question' => 'آیا سیم‌بکسل‌ها، زنجیرها، ورق‌گیرها، شگل‌ها و لوپ‌ها از نظر سایش، خمش و ترک کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -4994,7 +4994,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       208 => 
       array (
-        'question' => 'کنترل تناژ دستگاه با سیم بکسل قالب و هم خوانی تناژ با قالب .',
+        'question' => 'آیا تناژ اسمی دستگاه با سیم‌بکسل و ظرفیت قلاب هم‌خوانی دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5002,7 +5002,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       209 => 
       array (
-        'question' => 'کنترل سیستم قطع کن قالب .',
+        'question' => 'آیا سیستم سوئیچ قطع‌کن حد بالای قلاب (Anti-Two Block) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5010,7 +5010,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       210 => 
       array (
-        'question' => 'کنترل گیربکس گردان و دنده‌های گردان و روانکاری گردان .',
+        'question' => 'آیا گیربکس گردان، دنده‌های گردان و وضعیت روانکاری سیستم گردان کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5018,7 +5018,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       211 => 
       array (
-        'question' => 'کنترل مخزن روغن هیدرولیک از لحاظ نشتی ٬ نشانگر میزان روغن مخزن و فیلتر آن .',
+        'question' => 'آیا مخزن هیدرولیک از لحاظ نشتی، نشانگر سطح روغن و سلامت فیلتر کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5026,7 +5026,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       212 => 
       array (
-        'question' => 'کنترل وضعیت بدنه بوم ٬ سایش ٬ دفرمگی ٬ ترک خوردگی و کفشک های بوم .',
+        'question' => 'آیا وضعیت بدنه بوم از نظر عدم سایش، دفرمگی، ترک‌خوردگی و کفشک‌های بوم کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5034,7 +5034,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       213 => 
       array (
-        'question' => 'کنترل رولرها و قرقره های روی بوم به لحاظ سایش و دفرمگی و روان بودن .',
+        'question' => 'آیا رولرها و قرقره‌های روی بوم به لحاظ عدم سایش، دفرمگی و روان بودن کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5042,7 +5042,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       214 => 
       array (
-        'question' => 'کنترل وضعیت بازو و شفت سیستم جک ها .',
+        'question' => 'آیا وضعیت بازو و شفت سیستم جک‌های دستگاه کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5050,7 +5050,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       215 => 
       array (
-        'question' => 'کنترل عدم پیچش و حرکت روان سیم بکسل روی قرقره ها و کنترل میله های محافظ روی پالک قرقره ها .',
+        'question' => 'آیا عدم پیچش و حرکت روان سیم‌بکسل روی قرقره‌ها و میله‌های محافظ قرقره کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5058,7 +5058,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       216 => 
       array (
-        'question' => 'کنترل چرخش قالب حول محور عمودی و عدم سایش قالب )قطر قالب ( و پین ها و ضامن ها .',
+        'question' => 'آیا چرخش قلاب حول محور عمودی، عدم سایش قلاب، پین‌ها و ضامن‌ها کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5066,7 +5066,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       217 => 
       array (
-        'question' => 'کنترل سوییچ قطع کن خودکار و دستی و پالک های کنترل اهرم ها .',
+        'question' => 'آیا سوئیچ قطع‌کن خودکار، کلیدهای دستی و پلاک‌های راهنمای اهرم‌ها کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5074,7 +5074,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       218 => 
       array (
-        'question' => 'آیا بار در حال حمل شدن دچار حرکات ارتعاشی ٬ آونگی و شناوری است؟',
+        'question' => 'آیا بار در حال جابه‌جایی فاقد حرکات ارتعاشی، آونگی و تاب‌خوردگی نامتعادل می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5082,7 +5082,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       219 => 
       array (
-        'question' => 'کنترل تعداد رشته های قطع شده در البه الی سیم بکسل ها .',
+        'question' => 'آیا تعداد رشته‌های بریده‌شده در لایه‌ها و گام‌های سیم‌بکسل کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5090,7 +5090,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       220 => 
       array (
-        'question' => 'کنترل قطر سیم بکسل با قطر قرقره ها و عدم دفرمگی و سایش و تاب آنها .',
+        'question' => 'آیا تناسب قطر سیم‌بکسل با شیار قرقره‌ها و عدم دفرمگی و تاب آنها کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5098,7 +5098,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       221 => 
       array (
-        'question' => 'کنترل جک های تعادل به لحاظ پوسته و سیلندر و صدای غیر عادی و لرزش و عدم نشتی .',
+        'question' => 'آیا جک‌های تعادل از لحاظ پوسته، سیلندر، صدای غیرعادی، لرزش و نشتی کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5106,7 +5106,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       222 => 
       array (
-        'question' => 'کنترل گیربکس وینچ از لحاظ عدم نشتی و صدای غیرعادی .',
+        'question' => 'آیا گیربکس وینچ از نظر عدم نشتی روغن و صدای غیرعادی کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5114,7 +5114,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       223 => 
       array (
-        'question' => 'کنترل لنت های ترمز وینچ .',
+        'question' => 'آیا ضخامت و عملکرد لنت‌های ترمز وینچ کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5122,7 +5122,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       224 => 
       array (
-        'question' => 'کنترل وینچ ٬ درام وینچ و چینش مرتب سیم بکسل بر روی درام .',
+        'question' => 'آیا وینچ، درام و چینش منظم لایه‌های سیم‌بکسل روی درام کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5130,7 +5130,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       225 => 
       array (
-        'question' => 'زمین قرار گیرد ( .',
+        'question' => 'آیا حداقل تعداد دور سیم‌بکسل روی درام هنگام باز بودن کامل بوم حفظ می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5138,7 +5138,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       226 => 
       array (
-        'question' => 'کنترل سیم بکسل درام ) اندازه سیم بکسل در زمان باز بودن کامل تلسکوپ ها صورتی که قالب روی؟',
+        'question' => 'آیا کیفیت روغن موتور و گیربکس و عدم وجود صدای غیرعادی و ارتعاش کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5146,7 +5146,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       227 => 
       array (
-        'question' => 'کنترل روغن موتور ٬ گیربکس ٬ صدای غیر عادی و ارتعاش .',
+        'question' => 'آیا عملکرد سیستم نگهدارنده هیدرولیکی بار (آکومولاتور و شیر یک‌طرفه) کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5154,7 +5154,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       228 => 
       array (
-        'question' => 'کنترل سیستم نگهدارنده بار ) آکوموالتور ( .',
+        'question' => 'آیا سیستم قفل هیدرولیک در هنگام افت ناگهانی فشار به درستی عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5162,7 +5162,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       229 => 
       array (
-        'question' => 'کنترل سیستم نگهدارنده بار ) آکوموالتور( .',
+        'question' => 'آیا تابلوی برق جرثقیل از نظر پوشش کنتاکتورها، قطع‌کن‌ها، سنسورها و فیوزها کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5170,7 +5170,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       230 => 
       array (
-        'question' => 'کنترل تابلو برق جرثقیل از نظر پوشش کنتاکتور ٬ قطع کن ها ٬ سنسورها ٬ فیوزها .',
+        'question' => 'آیا ریگر (راهنمای باربندی) دارای تجربه و آموزش کافی برای کار با جرثقیل می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5178,7 +5178,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       231 => 
       array (
-        'question' => 'آیا ریگر )راهنما ( دارای تجربه و آشنایی کافی کار با جرثقیل را دارد؟',
+        'question' => 'آیا جک‌های تعادلی دستگاه در شرایط کاملاً قابل قبول و ایمن مستقر شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5186,7 +5186,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       232 => 
       array (
-        'question' => 'آیا جک های تعادلی شرایط قابل قبولی دارند؟',
+        'question' => 'آیا تراکم و استحکام خاک زیر پایه‌های جک‌های تعادل ارزیابی و تأیید شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5194,7 +5194,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       233 => 
       array (
-        'question' => 'آیا تراکم خاک زیر پایه های جک های تعادل انجام شده است؟',
+        'question' => 'آیا بوم جرثقیل از لحاظ پین‌ها، مفصل‌ها، کفشک‌ها و نشانگر زاویه وضعیت مناسبی دارد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5202,7 +5202,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       234 => 
       array (
-        'question' => 'دارای نشانگر زاویه است؟',
+        'question' => 'آیا قلاب دستگاه بدون سایش غیرمجاز و مجهز به ضامن ایمنی سالم (Safety Latch) می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5210,7 +5210,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       235 => 
       array (
-        'question' => 'آیا بوم جرثقیل به لحاظ پین ها و مفصل ها و کفشک ها وضعیت مناسبی دارند و هم چنین بوم؟',
+        'question' => 'آیا قلاب حول محور خود در مجموعه هوک به آسانی می‌چرخد و اتصالات آن سالم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5218,7 +5218,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       236 => 
       array (
-        'question' => 'آیا قالب بدون سایش و دارای ضامن ایمنی ) ( است؟',
+        'question' => 'آیا سیم‌بکسل فعال (زنده) خارج‌شده از نگهدارنده با قسمت غیرفعال (مرده) کاملاً تفکیک شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5226,7 +5226,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       237 => 
       array (
-        'question' => 'آیا قالب حول محورش در هوک به سهولت چرخش دارد و هم چنین اتصالات آن سالم است؟',
+        'question' => 'آیا زیربنا و فونداسیون استقرار جرثقیل سقفی مناسب و محکم می‌باشد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5234,7 +5234,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       238 => 
       array (
-        'question' => 'جرثقیل های سقفی قبل از شروع به‌کار ( کاملاً جدا است؟',
+        'question' => 'آیا راه‌های دسترسی و پله‌های ورود به جرثقیل سقفی به خوبی مشخص و ایمن شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5242,7 +5242,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       239 => 
       array (
-        'question' => 'آیا سیم بکسل فعال ) سیم بکسل زنده خارج شده از نگهدارنده بعد از هوک ( با قسمت غیرفعال )مرده؟',
+        'question' => 'آیا بخش‌های مختلف سازه‌ای جرثقیل سقفی محکم و بدون نقص هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5250,7 +5250,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       240 => 
       array (
-        'question' => 'آیا زیر بنا و فونداسیون جرثقیل مناسب و محکم است؟',
+        'question' => 'آیا راهروها، پاگردها و حفاظ‌های جانبی جرثقیل سقفی مناسب و کنترل‌شده هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5258,7 +5258,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       241 => 
       array (
-        'question' => 'آیا راه های دسترسی به خوبی مشخص شده‌اند؟',
+        'question' => 'آیا پل و موتورهای حرکت طولی جرثقیل سقفی سالم و کنترل‌شده می‌باشند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5266,7 +5266,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       242 => 
       array (
-        'question' => 'آیا بخش های مختلف جرثقیل محکم است؟',
+        'question' => 'آیا سیستم ترمز حرکت پل جرثقیل سقفی به خوبی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5274,7 +5274,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       243 => 
       array (
-        'question' => 'آیا راهروها و حفاظ ها مناسب و کنترل شده است؟',
+        'question' => 'آیا سیستم هیدرولیک و اتصالات آن در جرثقیل سقفی کنترل شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5282,7 +5282,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       244 => 
       array (
-        'question' => 'آیا پل و موتور حرکت مناسب وکنترل شده است؟',
+        'question' => 'آیا بست‌ها، پیچ‌ها و میله‌های اتصال سازه جرثقیل سقفی کنترل و محکم شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5290,7 +5290,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       245 => 
       array (
-        'question' => 'آیا ترمز پل به خوبی کار می‌کند؟',
+        'question' => 'آیا استپرهای انتهای مسیر حرکت پل و کالسکه کنترل شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5298,7 +5298,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       246 => 
       array (
-        'question' => 'سیستم هیدرولیک کنترل می‌شود؟',
+        'question' => 'آیا گوه‌ها، نگهدارنده‌ها و قفل‌کن‌های انتهای ریل در جای خود مستقر هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5306,7 +5306,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       247 => 
       array (
-        'question' => 'بست ها و میله ها ی اتصال؟',
+        'question' => 'آیا نظم و ترتیب محیطی کارگاه در محدوده حرکت جرثقیل سقفی رعایت شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5314,7 +5314,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       248 => 
       array (
-        'question' => 'انتهای مسیر کنترل می‌شود؟',
+        'question' => 'آیا تمیزی ریل‌های حرکت طولی و عرضی از براده و روغن تأیید شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5322,7 +5322,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       249 => 
       array (
-        'question' => 'گوه ها ٬ نگهدارنده ها و قفل کن ها؟',
+        'question' => 'آیا ترمز نگهدارنده وینچ بالابر جرثقیل سقفی سالم و مطمئن عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5330,7 +5330,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       250 => 
       array (
-        'question' => 'نظم و ترتیب کارگاه؟',
+        'question' => 'آیا ترمز کنترل بار بالابر جرثقیل سقفی به درستی عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5338,7 +5338,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       251 => 
       array (
-        'question' => 'بازرسی از اجزای ماشینی جرثقیل تمیزی ریل ها؟',
+        'question' => 'آیا پوشش‌ها و حفاظ‌های روی الکتروموتورها و گیربکس‌ها محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5346,7 +5346,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       252 => 
       array (
-        'question' => 'ترمز نگهدارنده؟',
+        'question' => 'آیا وضعیت قرقره‌های بالایی درام و مجموعه هوک سالم و روان است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5354,7 +5354,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       253 => 
       array (
-        'question' => 'ترمز کنترل بار؟',
+        'question' => 'آیا سیم‌بکسل بالابر جرثقیل سقفی از نظر عدم فرسودگی، زدگی و روغن‌کاری تأیید است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5362,7 +5362,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       254 => 
       array (
-        'question' => 'محکم بودن پوشش‌ها؟',
+        'question' => 'آیا قلاب، شگل‌ها و اتصالات باربردار (Shackles & Hook) بدون نقص و سایش هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5370,7 +5370,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       255 => 
       array (
-        'question' => 'قرقره های بالایی؟',
+        'question' => 'آیا نشت مایعات از قبیل روغن هیدرولیک، واسکازین یا آب در جرثقیل سقفی مشاهده می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5378,7 +5378,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       256 => 
       array (
-        'question' => 'سیم بکسل؟',
+        'question' => 'آیا باتری‌ها و مدار تغذیه اضطراری جرثقیل سقفی سالم و شارژ هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5386,7 +5386,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       257 => 
       array (
-        'question' => '( قالب و شگل ها )؟',
+        'question' => 'آیا موتورهای الکتریکی حرکت طولی، عرضی و بالابری بدون داغی و صدا کار می‌کنند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5394,7 +5394,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       258 => 
       array (
-        'question' => 'نشت مایعات ) روغن و آب (؟',
+        'question' => 'آیا تابلوهای برق جرثقیل سقفی تمیز، بسته و دارای عایق‌بندی مناسب هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5402,7 +5402,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       259 => 
       array (
-        'question' => 'باتری ها؟',
+        'question' => 'آیا کابل‌های برق و کابل‌های کنترل هلالی شکل (Festoon Cables) سالم و روان هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5410,7 +5410,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       260 => 
       array (
-        'question' => 'موتورهای الکتریکی؟',
+        'question' => 'آیا علائم هشداردهنده، پلاک ظرفیت مجاز و برچسب‌های ایمنی نصب و خوانا هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5418,7 +5418,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       261 => 
       array (
-        'question' => 'تابلوهای برق؟',
+        'question' => 'آیا تجهیزات از لحاظ حفاظت در برابر خطرات الکتریکی و برق‌گرفتگی ایمن‌سازی شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5426,7 +5426,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       262 => 
       array (
-        'question' => 'کابل‌های برق و کنترل هلالی شکل؟',
+        'question' => 'آیا نگهدارنده و ریل‌های کالسکه حرکت عرضی (Trolley) سالم و محکم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5434,7 +5434,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       263 => 
       array (
-        'question' => 'علائم و برچسب های هشداردهنده؟',
+        'question' => 'آیا نظم و ترتیب و تمیزی داخل اتاق راننده (کابین اپراتور) برقرار است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5442,7 +5442,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       264 => 
       array (
-        'question' => 'خطرات الکتریکی؟',
+        'question' => 'آیا علائم هشداردهنده و راهنمای کلیدها داخل اتاق راننده نصب شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5450,7 +5450,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       265 => 
       array (
-        'question' => 'بازرسی از اتاق راننده نگهدارنده؟',
+        'question' => 'آیا درب اتاق راننده سالم است و به خوبی باز و بسته و قفل می‌شود؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5458,7 +5458,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       266 => 
       array (
-        'question' => 'نظم و ترتیب؟',
+        'question' => 'آیا کپسول‌های اطفای حریق معتبر و آماده‌به‌کار در اتاق راننده موجود است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5466,7 +5466,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       267 => 
       array (
-        'question' => 'علائم هشداردهنده؟',
+        'question' => 'آیا کنترل‌ها، کلیدها و جوی‌استیک‌های اتاق راننده شناسایی و نام‌گذاری شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5474,7 +5474,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       268 => 
       array (
-        'question' => 'درب اتاق؟',
+        'question' => 'آیا سیستم‌های برقی داخل اتاق راننده محصور و ایمن‌سازی شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5482,7 +5482,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       269 => 
       array (
-        'question' => 'کپسول های اطفای حریق؟',
+        'question' => 'آیا سیم بکسل نگهدارنده صفحه کلید آویزان (میکروسوئیچ فندر) سالم و محکم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5490,7 +5490,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       270 => 
       array (
-        'question' => 'شناسایی کنترل ها؟',
+        'question' => 'آیا شیشه‌های اتاق راننده شفاف، تمیز و دارای میدان دید کامل هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5498,7 +5498,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       271 => 
       array (
-        'question' => 'محصور بودن سیستم های برقی؟',
+        'question' => 'آیا تجهیزات ایمنی فردی و کمربند نجات در اتاق راننده فراهم است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5506,7 +5506,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       272 => 
       array (
-        'question' => 'سیم نگهدارنده صفحه کلید آویزان؟',
+        'question' => 'آیا چراغ‌های خطر و نشانگرهای وضعیت دستگاه در کابین فعال هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5514,7 +5514,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       273 => 
       array (
-        'question' => 'شیشه ای قابل دید؟',
+        'question' => 'آیا آلارم‌ها، بوق و آژیرهای هشدار جرثقیل سقفی به درستی به صدا درمی‌آیند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5522,7 +5522,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       274 => 
       array (
-        'question' => 'تجهیزات ایمنی؟',
+        'question' => 'آیا رله اصلی تغذیه برق ورودی دستگاه سالم و بدون نقص است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5530,7 +5530,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       275 => 
       array (
-        'question' => 'چراغ خطرها؟',
+        'question' => 'آیا دکمه ریست دستی سیستم کنترل برق جرثقیل سقفی به درستی کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5538,7 +5538,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       276 => 
       array (
-        'question' => 'بازرسی عملکرد جرثقیل آالرم و آژیرهای جرثقیل سقفی؟',
+        'question' => 'آیا دکمه توقف اضطراری (Emergency Stop) فوراً مدار حرکت را قطع می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5546,7 +5546,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       277 => 
       array (
-        'question' => 'برق رله تغذیه؟',
+        'question' => 'آیا دکمه‌های فشاری صفحه کلید آویزان (Pendant Push Buttons) نرم و سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5554,7 +5554,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       278 => 
       array (
-        'question' => 'ریست دستی؟',
+        'question' => 'آیا لیمیت‌سوئیچ قطع‌کن حد بالای حرکت قلاب اصلی فعال و کالیبره است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5562,7 +5562,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       279 => 
       array (
-        'question' => 'دکمه کنترل و توقف؟',
+        'question' => 'آیا دکمه و سوئیچ قطع‌کن حرکت بالای قلاب کمکی به موقع مدار را قطع می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5570,7 +5570,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       280 => 
       array (
-        'question' => 'دکمه های فشاری صفحه کلید آویزان؟',
+        'question' => 'آیا لیمیت‌سوئیچ قطع‌کن حد پایین حرکت قلاب اصلی به درستی عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5578,7 +5578,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       281 => 
       array (
-        'question' => 'دکمه قطع کن حرکت بالا ) اصلی (؟',
+        'question' => 'آیا دکمه و سوئیچ قطع‌کن حرکت پایین قلاب کمکی به درستی مدار را قطع می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5586,7 +5586,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       282 => 
       array (
-        'question' => 'دکمه قطع کن حرکت بالا ) کمکی (؟',
+        'question' => 'آیا سیستم کنترل و هدایت حرکت پل جرثقیل سقفی دقیق عمل می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5594,7 +5594,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       283 => 
       array (
-        'question' => 'دکمه قطع کن حرکت پایین ) اصلی (؟',
+        'question' => 'آیا ترمز توقف حرکت پل جرثقیل سقفی به نرمی و بدون ضربه دستگاه را مهار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5602,7 +5602,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       284 => 
       array (
-        'question' => 'دکمه قطع کن حرکت پایین ) کمکی (؟',
+        'question' => 'آیا سیستم کنترل حرکت کالسکه (Trolley) روان و دقیق پاسخ می‌دهد؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5610,7 +5610,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       285 => 
       array (
-        'question' => 'کنترل پل؟',
+        'question' => 'آیا قلاب بزرگ (اصلی) از نظر سلامت سازه، ضامن و چرخش مطلوب ارزیابی شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5618,7 +5618,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       286 => 
       array (
-        'question' => 'ترمز پل؟',
+        'question' => 'آیا قلاب کوچک (کمکی) از نظر سلامت سازه، ضامن و روان بودن حرکت تأیید است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5626,7 +5626,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       287 => 
       array (
-        'question' => 'قالب بزرگ؟',
+        'question' => 'آیا منطقه کاری و حریم عملیاتی جرثقیل سقفی عاری از مانع و پرسنل متفرقه است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5634,7 +5634,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       288 => 
       array (
-        'question' => 'قالب کوچک؟',
+        'question' => 'آیا ضربه‌گیرها و نگهدارنده‌های انتهای مسیر حرکت کالسکه سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5642,7 +5642,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       289 => 
       array (
-        'question' => 'منطقه کاری؟',
+        'question' => 'آیا رله‌ها و میکروسوئیچ‌های محدودکننده حرکت طولی و عرضی عمل می‌کنند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5650,7 +5650,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       290 => 
       array (
-        'question' => 'نگهدارنده های مسیر حرکت؟',
+        'question' => 'آیا رله‌ها و سوئیچ‌های محدودکننده سقفی Trolley سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5658,7 +5658,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       291 => 
       array (
-        'question' => 'رله های محدود کننده حرکت؟',
+        'question' => 'آیا رله‌ها و سوئیچ‌های محدودکننده سقفی پل جرثقیل به درستی تنظیم شده‌اند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5666,7 +5666,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       292 => 
       array (
-        'question' => 'رله های سقفی؟',
+        'question' => 'آیا دکمه انگشتی کنترل حرکت دقیق Trolley بدون گیر کار می‌کند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5674,7 +5674,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       293 => 
       array (
-        'question' => 'رله های سقفی پل؟',
+        'question' => 'آیا اجزا و قطعات الکترونیکی مدار کنترل کالسکه (Trolley) سالم هستند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5682,7 +5682,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       294 => 
       array (
-        'question' => 'دکمه انگشتی؟',
+        'question' => 'آیا شینه‌ها و کلکتورهای انتقال برق Trolley بدون جرقه و سایش حرکت می‌کنند؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5690,7 +5690,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       295 => 
       array (
-        'question' => 'اجزای کنترل؟',
+        'question' => 'آیا وضعیت ارتینگ و اتصال به زمین کل سازه جرثقیل سقفی بررسی و تأیید شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
@@ -5698,7 +5698,7 @@ class SafetyChecklistsSeeder extends Seeder
       ),
       296 => 
       array (
-        'question' => 'کلکتورهای؟',
+        'question' => 'آیا پیش از شروع نوبت کاری، تست بی‌باری کلیه عملکردهای حرکتی جرثقیل انجام شده است؟',
         'guidance' => NULL,
         'weight' => 1,
         'is_critical' => false,
