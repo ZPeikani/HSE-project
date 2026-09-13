@@ -16,6 +16,10 @@ class AiKnowledgeImportController extends Controller
 
     public function store(Request $request, AiKnowledgeImportService $importService)
     {
+        if ($request->filled('approval_date')) {
+            $request->merge(['approval_date' => optional(jalaliToCarbon($request->input('approval_date')))?->toDateString() ?? $request->input('approval_date')]);
+        }
+
         $data = $request->validate([
             'pdf' => ['required', 'file', 'mimes:pdf', 'max:20480'],
             'title' => ['required', 'string', 'max:255'],

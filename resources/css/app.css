@@ -29,6 +29,17 @@ a, button {
   cursor: pointer;
   transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
+#main-sidebar a[href*="ai/knowledge/import"] {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  padding: 0.625rem 0.75rem;
+  font-weight: 500;
+}
+#main-sidebar a[href*="ai/knowledge/import"] > span:last-child {
+  flex: 1;
+}
 a.bg-slate-900:hover,
 button.bg-slate-900:hover {
   background-color: rgb(100 116 139);

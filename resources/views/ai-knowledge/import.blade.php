@@ -79,7 +79,7 @@
 
                 <div>
                     <label class="mb-1 block text-sm font-bold">تاریخ تصویب</label>
-                    <input type="date" name="approval_date" value="{{ old('approval_date') }}" class="w-full rounded-xl border border-slate-200 px-3 py-2.5">
+                    <input type="text" name="approval_date" value="{{ old('approval_date') }}" data-jdatepicker="date" autocomplete="off" placeholder="۱۴۰۳/۰۱/۰۱" dir="ltr" class="w-full rounded-xl border border-slate-200 px-3 py-2.5">
                 </div>
 
                 <div>
