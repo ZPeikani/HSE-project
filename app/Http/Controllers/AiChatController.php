@@ -178,7 +178,7 @@ class AiChatController extends Controller
             . "\n\n" . $dbContext
             . $operationalSection
             . "\n\n" . $knowledgeContext
-            . "\n\nقواعد استفاده از منابع: اگر منبع ایرانی بازیابی شده، در پرسش‌های حقوقی/الزام‌آور آن را بر اطلاعات عمومی ترجیح بده. عنوان منبع و ماده/بند را فقط وقتی ذکر کن که در منبع بازیابی‌شده وجود دارد. منبع ایرانی و استاندارد/راهنمای بین‌المللی را با هم مخلوط نکن؛ در صورت نیاز آن‌ها را جداگانه با برچسب «الزامات قانونی ایران» و «راهنمای بین‌المللی» توضیح بده. اگر منبع کافی نیست، صریح بگو منبع مشخصی پیدا نشد و چیزی را جعل نکن.";
+            . "\n\nقواعد استفاده از منابع: اگر منبع ایرانی بازیابی شده، در پرسش‌های حقوقی/الزام‌آور آن را بر اطلاعات عمومی ترجیح بده. عنوان منبع و ماده/بند را فقط وقتی ذکر کن که در منبع بازیابی‌شده وجود دارد. اگر کاربر سؤال پیگیری مانند «کدام ماده؟»، «براساس کدام ماده؟»، «کدام بند؟» یا مشابه آن پرسید، موضوع را از تاریخچه مکالمه تشخیص بده و فقط از همان موضوع/آیین‌نامه برای تعیین مستند استفاده کن؛ به یک ماده از آیین‌نامه‌ای دیگر صرفاً به دلیل وجود واژه «ماده» استناد نکن. برای عدد، آستانه، الزام قانونی و شماره ماده، فقط وقتی پاسخ قطعی بده که در منابع بازیابی‌شده صریحاً پشتیبانی شده باشد. اگر منابع با هم تعارض دارند یا منبع کافی نیست، تعارض/نبود منبع را صریح اعلام کن و چیزی را حدس نزن. منبع ایرانی و استاندارد/راهنمای بین‌المللی را با هم مخلوط نکن؛ در صورت نیاز آن‌ها را جداگانه با برچسب «الزامات قانونی ایران» و «راهنمای بین‌المللی» توضیح بده.";
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -340,8 +340,58 @@ class AiChatController extends Controller
             ->values();
 
         // ── بازیابی منابع HSE مرتبط با سؤال ──
+        // برای سؤال‌های پیگیری مثل «براساس کدوم ماده؟»، سؤال قبلی هم وارد
+        // عبارت جست‌وجو می‌شود تا موضوع آیین‌نامه از دست نرود.
         $knowledgeService = app(AiKnowledgeService::class);
-        $knowledgeResults = $knowledgeService->search($request->message);
+
+        $retrievalQuestion = $request->message;
+        $recentUserQuestions = $dbHistory
+            ->where('role', 'user')
+            ->pluck('content')
+            ->take(-3)
+            ->all();
+
+        if ($recentUserQuestions !== []) {
+            $retrievalQuestion = implode("\n", array_merge($recentUserQuestions, [$request->message]));
+        }
+
+        $knowledgeResults = $knowledgeService->search($retrievalQuestion);
+
+        // برای سؤال‌های حقوقی، اگر منبع بازیابی نشد، اصلاً به مدل اجازه تولید
+        // پاسخ حدسی نمی‌دهیم؛ پاسخ کنترل‌شده برمی‌گردد.
+        $normalizedRetrievalQuestion = mb_strtolower($retrievalQuestion);
+        $isLegalQuestion = false;
+        foreach ([
+            'قانون', 'آیین نامه', 'آیین‌نامه', 'ماده', 'تبصره', 'بند',
+            'الزام قانونی', 'الزامات ایمنی', 'مقررات', 'وزارت کار', 'شورای عالی حفاظت فنی',
+            'مشمول الزامات', 'کار در ارتفاع', 'ارتفاع مشمول',
+            'براساس کدام ماده', 'بر اساس کدام ماده',
+        ] as $legalTerm) {
+            if (mb_stripos($normalizedRetrievalQuestion, $legalTerm) !== false) {
+                $isLegalQuestion = true;
+                break;
+            }
+        }
+
+        if ($isLegalQuestion && $knowledgeResults === []) {
+            $content = 'برای این پرسش حقوقی/مقرراتی، منبع فعال و مشخصی در پایگاه دانش پیدا نشد؛ بنابراین از بیان عدد، ماده یا الزام قانونی بدون مستند خودداری می‌کنم.';
+
+            AiMessage::insert([
+                ['ai_conversation_id' => $conversation->id, 'role' => 'user', 'content' => $request->message, 'created_at' => now()],
+                ['ai_conversation_id' => $conversation->id, 'role' => 'assistant', 'content' => $content, 'created_at' => now()],
+            ]);
+
+            $conversation->touch();
+            $conversation->save();
+
+            return response()->json([
+                'reply' => $content,
+                'conversation_id' => $conversation->id,
+                'msg_count' => $msgCount + 2,
+                'max_msgs' => self::MAX_MESSAGES,
+            ]);
+        }
+
         $knowledgeContext = $knowledgeService->formatForPrompt($knowledgeResults);
 
         // ── ساخت payload برای AI ──
@@ -364,7 +414,7 @@ class AiChatController extends Controller
                 'model'       => 'openai/gpt-4o-mini',
                 'messages'    => $messages,
                 'max_tokens'  => 1000,
-                'temperature' => 0.7,
+                'temperature' => 0.2,
             ]);
 
         if ($response->failed()) {

@@ -1,42 +1,27 @@
-# HSE AI Knowledge - PDF Import
+# پایگاه دانش AI — معماری بدون OCR در Runtime
 
-این مرحله Import PDF را به پروژه اضافه می‌کند.
+این پروژه در زمان اجرای Laravel به هیچ ابزار سیستم‌عاملی مثل Tesseract، Poppler یا LibreOffice وابسته نیست.
 
-## تغییرات
-- افزودن `AiKnowledgeImportService`
-- افزودن `AiKnowledgeImportController`
-- افزودن صفحه `/ai/knowledge/import`
-- افزودن لینک «پایگاه دانش AI» برای admin و hse_manager
-- استخراج PDF با `smalot/pdfparser`
-- تشخیص فصل‌ها و توالی مواد
-- ذخیره هر ماده در `ai_knowledge_chunks`
-- نگهداری شماره صفحه
-- ذخیره فایل اصلی در storage خصوصی
-- حذف `search_text` اضافی از `AiKnowledgeChunk`
+## اصل طراحی
 
-## نصب وابستگی
-به دلیل اینکه Composer در محیط توسعه فعلی شما به Packagist دسترسی پایدار نداشت، فقط dependency در `composer.json` ثبت شده است.
+- PDF متنی: با `smalot/pdfparser` در PHP پردازش می‌شود.
+- PDF اسکن‌شده / Encoding خاص و فایل‌های DOC: فقط در مرحله آماده‌سازی آفلاین پردازش می‌شوند.
+- خروجی آماده‌سازی به صورت `Knowledge Bundle` (JSON) وارد دیتابیس می‌شود.
+- روی سرور/سیستم مقصد فقط PHP + Composer dependencies لازم است.
+- موبایل/مرورگر کاربر هرگز نیاز به OCR ندارد؛ OCR اگر استفاده شود مربوط به مرحله Build/Import اولیه روی سیستم توسعه است.
 
-پس از برقراری اتصال Composer اجرا کنید:
+## وارد کردن بسته آماده
 
 ```bash
-composer update smalot/pdfparser --with-dependencies
+php artisan ai:knowledge:import-bundle database/seeders/data/ai_knowledge_bundle.json
 ```
 
-سپس:
+این دستور فقط JSON و دیتابیس را می‌خواند و هیچ binary خارجی اجرا نمی‌کند.
+
+## وارد کردن PDF متنی جدید
 
 ```bash
-php artisan optimize:clear
+php artisan ai:knowledge:import-sources "PATH_TO_FOLDER"
 ```
 
-## استفاده
-با حساب admin یا hse_manager وارد سامانه شوید و از منوی:
-
-مدیریت و تحلیل → پایگاه دانش AI
-
-فایل PDF را انتخاب کنید و Import را بزنید.
-
-برای PDF «آیین نامه وسایل حفاظت فردی» انتظار می‌رود ساختار ماده‌ها به‌صورت chunk ذخیره شود و شماره صفحه هر ماده نیز حفظ شود.
-
-## نکته
-این Importer برای PDFهای متنی است. PDF اسکن‌شده که متن قابل استخراج ندارد، در این مرحله نیازمند OCR است.
+اگر PDF اسکن‌شده یا دارای Encoding غیرقابل‌استخراج باشد، سیستم عمداً آن را رد می‌کند و پیشنهاد نمی‌دهد روی سیستم مقصد OCR نصب شود. چنین فایل‌هایی باید یک‌بار در محیط آماده‌سازی به Bundle تبدیل شوند.
