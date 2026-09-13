@@ -6,7 +6,7 @@ use App\Models\AiKnowledgeChunk;
 use App\Models\AiKnowledgeDocument;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use RuntimeException;
+use Illuminate\Support\Facades\Schema;
 
 class ImportAiKnowledgeBundle extends Command
 {
@@ -67,10 +67,10 @@ class ImportAiKnowledgeBundle extends Command
                     AiKnowledgeChunk::create([
                         'ai_knowledge_document_id' => $document->id,
                         'chunk_index' => $chunk['chunk_index'] ?? $index,
-                        'chapter' => $chunk['chapter'] ?? null,
-                        'article_number' => $chunk['article_number'] ?? null,
-                        'paragraph_number' => $chunk['paragraph_number'] ?? null,
-                        'page_number' => $chunk['page_number'] ?? null,
+                        'chapter' => $this->normalizeChapter($chunk['chapter'] ?? null),
+                        'article_number' => $this->normalizeArticleNumber($chunk),
+                        'paragraph_number' => $this->normalizeScalar($chunk['paragraph_number'] ?? null),
+                        'page_number' => $this->normalizeScalar($chunk['page_number'] ?? null),
                         'content' => trim((string) ($chunk['content'] ?? '')),
                     ]);
                 }
@@ -83,5 +83,90 @@ class ImportAiKnowledgeBundle extends Command
         $this->newLine();
         $this->info("وارد شد: {$imported} | تکراری: {$skipped}");
         return self::SUCCESS;
+    }
+
+    /**
+     * JSON جدید chapter را به مقدار scalar قابل ذخیره در ستون فعلی تبدیل می‌کند.
+     * ساختار قدیمی scalar نیز همچنان پشتیبانی می‌شود.
+     */
+    private function normalizeChapter(mixed $value): ?string
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        if (is_array($value)) {
+            $value = array_values(array_filter(array_map(
+                static fn ($item) => is_scalar($item) ? trim((string) $item) : null,
+                $value
+            ), static fn ($item) => $item !== null && $item !== ''));
+
+            return $value === [] ? null : implode(' | ', $value);
+        }
+
+        return is_scalar($value) ? trim((string) $value) : null;
+    }
+
+    /**
+     * article_numbers در JSON جدید می‌تواند چند مقدار داشته باشد، اما ستون فعلی
+     * article_number در دیتابیس یک مقدار scalar است. اگر ستون متنی باشد، همه مقادیر
+     * با کاما ذخیره می‌شوند؛ اگر عددی باشد، فقط وقتی یک مقدار وجود دارد همان مقدار
+     * ذخیره می‌شود و در حالت چندمقداری، مقدار اول به‌عنوان مقدار legacy نگه داشته می‌شود.
+     */
+    private function normalizeArticleNumber(array $chunk): int|string|null
+    {
+        $values = $chunk['article_numbers'] ?? null;
+
+        // پشتیبانی از JSON قدیمی
+        if ($values === null && array_key_exists('article_number', $chunk)) {
+            $values = $chunk['article_number'];
+        }
+
+        if ($values === null || $values === '') {
+            return null;
+        }
+
+        if (!is_array($values)) {
+            return is_scalar($values) ? $values : null;
+        }
+
+        $values = array_values(array_filter(array_map(
+            static fn ($item) => is_scalar($item) ? trim((string) $item) : null,
+            $values
+        ), static fn ($item) => $item !== null && $item !== ''));
+
+        if ($values === []) {
+            return null;
+        }
+
+        $columnType = Schema::getColumnType('ai_knowledge_chunks', 'article_number');
+        $numericTypes = ['integer', 'bigint', 'smallint', 'mediumint', 'tinyint'];
+
+        if (in_array($columnType, $numericTypes, true)) {
+            return (int) $values[0];
+        }
+
+        return implode(', ', $values);
+    }
+
+    /**
+     * جلوگیری از ارسال آرایه به ستون‌های scalar در صورت وجود metadata قدیمی/نامتعارف.
+     */
+    private function normalizeScalar(mixed $value): int|string|null
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        if (is_array($value)) {
+            $value = array_values(array_filter(array_map(
+                static fn ($item) => is_scalar($item) ? trim((string) $item) : null,
+                $value
+            ), static fn ($item) => $item !== null && $item !== ''));
+
+            return $value === [] ? null : implode(', ', $value);
+        }
+
+        return is_scalar($value) ? $value : null;
     }
 }
