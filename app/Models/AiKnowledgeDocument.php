@@ -21,6 +21,7 @@ class AiKnowledgeDocument extends Model
         'source_url',
         'original_file_path',
         'description',
+        'file_hash',
     ];
 
     protected $casts = [
