@@ -66,6 +66,27 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+const updateScoreOutputs = (row) => {
+    if (row.dataset.scoreRow === 'fmea') {
+        const values = ['severity', 'occurrence', 'detection'].map((name) => Number(row.querySelector(`[name$="[${name}]"]`)?.value || 0));
+        const output = row.querySelector('[data-rpn-output]');
+        if (output) output.value = values.reduce((score, value) => score * value, 1);
+    }
+    if (row.dataset.scoreRow === 'jsa') {
+        const score = (likelihood, severity) => Number(row.querySelector(`[name$="[${likelihood}]"]`)?.value || 0) * Number(row.querySelector(`[name$="[${severity}]"]`)?.value || 0);
+        const riskOutput = row.querySelector('[data-risk-score-output]');
+        const residualOutput = row.querySelector('[data-residual-score-output]');
+        if (riskOutput) riskOutput.value = score('likelihood', 'severity');
+        if (residualOutput) residualOutput.value = score('residual_likelihood', 'residual_severity');
+    }
+};
+
+document.querySelectorAll('[data-score-row]').forEach(updateScoreOutputs);
+document.addEventListener('input', (event) => {
+    const row = event.target.closest('[data-score-row]');
+    if (row) updateScoreOutputs(row);
+});
+
 document.querySelectorAll('[data-add-row]').forEach((button) => button.addEventListener('click', () => {
     const type = button.dataset.addRow;
     const target = document.getElementById(`${type}-rows`);
@@ -78,6 +99,7 @@ document.querySelectorAll('[data-add-row]').forEach((button) => button.addEventL
         if (!['controls', 'existing_control', 'recommended_action'].includes(input.dataset.name)) input.required = true;
     });
     target.appendChild(row);
+    updateScoreOutputs(target.lastElementChild);
 }));
 
 document.querySelectorAll('[data-chart]').forEach((canvas) => {

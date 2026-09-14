@@ -60,6 +60,16 @@ button.bg-orange-500:hover {
 [x-cloak] {
   display: none !important;
 }
+#fmea-rows input,
+#jsa-rows input {
+  height: 3rem;
+}
+@media (min-width: 1024px) {
+  #fmea-rows [data-row] > input,
+  #jsa-rows [data-row] > input {
+    margin-top: 1.75rem;
+  }
+}
 .fishbone-diagram {
   position: relative;
   display: grid;
