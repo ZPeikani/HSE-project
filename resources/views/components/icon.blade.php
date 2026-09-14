@@ -9,6 +9,7 @@
 @case('incident')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 3v7m0 4v7M3 12h7m4 0h7M5.6 5.6l4.9 4.9m3 3l4.9 4.9m0-13.8l-4.9 4.9m-3 3l-4.9 4.9"/></svg>@break
 @case('check')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 13l4 4L19 7"/></svg>@break
 @case('list')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>@break
+@case('search')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="m16 16 4.5 4.5"/></svg>@break
 @case('chart')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 20V10m6 10V4m6 16v-7m5 7H2"/></svg>@break
 @case('users')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2m7-10a4 4 0 100-8 4 4 0 000 8zm8 1a4 4 0 014 4v2m-5-14a4 4 0 010 8"/></svg>@break
 @case('building')<svg class="{{ $classes }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 21V4h10v17M8 8h2m-2 4h2m-2 4h2m6-6h4v11H2"/></svg>@break

@@ -8,9 +8,23 @@ use Illuminate\Support\Facades\DB;
 
 class ChecklistController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		return view('checklists.index', ['checklists' => Checklist::withCount(['activeItems as items_count'])->latest()->paginate(15)]);
+		$search = trim((string) $request->query('search', ''));
+		$query = Checklist::withCount(['activeItems as items_count'])->latest();
+
+		if ($search !== '') {
+			$query->where(function ($query) use ($search) {
+				$query->where('title', 'like', "%{$search}%")
+					->orWhere('category', 'like', "%{$search}%")
+					->orWhere('description', 'like', "%{$search}%");
+			});
+		}
+
+		return view('checklists.index', [
+			'checklists' => $query->paginate(15)->withQueryString(),
+			'search' => $search,
+		]);
 	}
 
 	public function create()
