@@ -717,10 +717,12 @@
     let isOpen  = false;
     let loading = false;
     let pendingConfirmAction = null;
+    let userMessageCount = 0;
 
     function updateMessageCount(count, max = 100) {
         const current = Math.max(0, Number(count) || 0);
         const limit = Math.max(1, Number(max) || 100);
+        userMessageCount = current;
         messageCount.textContent = `${current.toLocaleString('fa-IR')} / ${limit.toLocaleString('fa-IR')} پیام`;
         messageCount.title = `${current.toLocaleString('fa-IR')} پیام از ${limit.toLocaleString('fa-IR')}`;
     }
@@ -1008,6 +1010,10 @@
     function sendMessage() {
         const text = input.value.trim();
         if (!text || loading) return;
+        if (userMessageCount >= 100) {
+            showAlert('ظرفیت مکالمه تکمیل شده است', 'در این گفتگو حداکثر ۱۰۰ پیام کاربر مجاز است. لطفاً مکالمه جدیدی شروع کنید.');
+            return;
+        }
 
         loading = true;
         sendBtn.disabled = true;
@@ -1031,6 +1037,7 @@
         .then(data => {
             hideTyping();
             if (data.error) {
+                if (data.conv_full) updateMessageCount(data.msg_count, data.max_msgs);
                 const debug = data.debug
                     ? '\n\nجزئیات:\nHTTP Status: ' + data.debug.http_status
                       + '\n' + JSON.stringify(data.debug.body, null, 2)

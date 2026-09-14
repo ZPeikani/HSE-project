@@ -187,7 +187,7 @@ class AiChatController extends Controller
     public function conversations()
     {
         $conversations = AiConversation::where('user_id', Auth::id())
-            ->withCount('messages')
+            ->withCount(['messages as messages_count' => fn ($query) => $query->where('role', 'user')])
             ->orderByDesc('updated_at')
             ->get(['id', 'title', 'updated_at']);
 
@@ -210,7 +210,7 @@ class AiChatController extends Controller
         return response()->json([
             'id'            => $conversation->id,
             'title'         => $conversation->title,
-            'message_count' => $conversation->messages->count(),
+            'message_count' => $conversation->messages->where('role', 'user')->count(),
             'messages'      => $conversation->messages->map(fn($m) => [
                 'role'    => $m->role,
                 'content' => $m->content,
@@ -323,11 +323,13 @@ class AiChatController extends Controller
         }
 
         // ── بررسی محدودیت پیام‌های مکالمه ──
-        $msgCount = $conversation->messages()->count();
+        $msgCount = $conversation->messages()->where('role', 'user')->count();
         if ($msgCount >= self::MAX_MESSAGES) {
             return response()->json([
-                'error'       => "ظرفیت این مکالمه تکمیل شده است (حداکثر " . self::MAX_MESSAGES . " پیام). لطفاً مکالمه جدیدی شروع کنید.",
+                'error'       => "ظرفیت پیام‌های کاربر در این مکالمه تکمیل شده است (حداکثر " . self::MAX_MESSAGES . " پیام). لطفاً مکالمه جدیدی شروع کنید.",
                 'conv_full'   => true,
+                'msg_count'   => $msgCount,
+                'max_msgs'    => self::MAX_MESSAGES,
             ], 422);
         }
 
@@ -387,7 +389,7 @@ class AiChatController extends Controller
             return response()->json([
                 'reply' => $content,
                 'conversation_id' => $conversation->id,
-                'msg_count' => $msgCount + 2,
+                'msg_count' => $msgCount + 1,
                 'max_msgs' => self::MAX_MESSAGES,
             ]);
         }
@@ -451,7 +453,7 @@ class AiChatController extends Controller
         $result = [
             'reply'           => trim($content),
             'conversation_id' => $conversation->id,
-            'msg_count'       => $msgCount + 2,
+            'msg_count'       => $msgCount + 1,
             'max_msgs'        => self::MAX_MESSAGES,
         ];
 
@@ -486,6 +488,19 @@ class AiChatController extends Controller
                 ->find($request->conversation_id);
 
             if ($conversation) {
+                $userMessageCount = $conversation->messages()
+                    ->where('role', 'user')
+                    ->count();
+
+                if ($userMessageCount >= self::MAX_MESSAGES) {
+                    return response()->json([
+                        'error'     => "ظرفیت پیام‌های کاربر در این مکالمه تکمیل شده است (حداکثر " . self::MAX_MESSAGES . " پیام).",
+                        'conv_full' => true,
+                        'msg_count' => $userMessageCount,
+                        'max_msgs'  => self::MAX_MESSAGES,
+                    ], 422);
+                }
+
                 AiMessage::insert([
                     ['ai_conversation_id' => $conversation->id, 'role' => 'user',      'content' => '[عملیات: ' . $request->action . ']', 'created_at' => now()],
                     ['ai_conversation_id' => $conversation->id, 'role' => 'assistant', 'content' => $result['message'],                   'created_at' => now()],
