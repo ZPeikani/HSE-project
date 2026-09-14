@@ -60,6 +60,79 @@ button.bg-orange-500:hover {
 [x-cloak] {
   display: none !important;
 }
+.fishbone-diagram {
+  position: relative;
+  display: grid;
+  min-width: 760px;
+  grid-template-columns: repeat(3, minmax(160px, 1fr)) 120px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  direction: ltr;
+}
+.fishbone-spine {
+  position: absolute;
+  right: 8%;
+  left: 4%;
+  top: 50%;
+  height: 3px;
+  background: #64748b;
+  transform: translateY(-50%);
+}
+.fishbone-spine::after {
+  position: absolute;
+  right: -0.1rem;
+  top: 50%;
+  border-top: 0.45rem solid transparent;
+  border-bottom: 0.45rem solid transparent;
+  border-right: 0.7rem solid #64748b;
+  content: '';
+  transform: translateY(-50%);
+}
+.fishbone-branch,
+.fishbone-effect {
+  position: relative;
+  z-index: 1;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.75rem;
+  direction: rtl;
+}
+.fishbone-branch:nth-of-type(even) {
+  transform: translateY(1.5rem);
+}
+.fishbone-branch:nth-of-type(odd) {
+  transform: translateY(-1.5rem);
+}
+.fishbone-effect {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+  align-self: center;
+  border-color: #d97706;
+  background: #fffbeb;
+  text-align: center;
+  font-weight: 800;
+}
+.fault-tree-node {
+  position: relative;
+}
+.fault-tree-node:not(:first-child)::before {
+  position: absolute;
+  right: 1.25rem;
+  top: -0.9rem;
+  height: 0.9rem;
+  border-right: 2px solid #34d399;
+  content: '';
+}
+.fault-tree-node:not(:first-child)::after {
+  position: absolute;
+  right: 1.25rem;
+  top: -0.9rem;
+  width: 1.2rem;
+  border-top: 2px solid #34d399;
+  content: '';
+}
 .scrollbar-thin::-webkit-scrollbar {
   width: 5px;
   height: 5px;
