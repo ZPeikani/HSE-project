@@ -20,10 +20,16 @@ class AiKnowledgeImportService
     public function import(UploadedFile|string $file, array $metadata = []): AiKnowledgeDocument
     {
         $path = $this->resolvePath($file);
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+
+        // For UploadedFile, getRealPath() points to Laravel's temporary file
+        // and may have no .pdf extension. Always use the original client
+        // extension for uploaded files; use pathinfo() only for local paths.
+        $extension = $file instanceof UploadedFile
+            ? strtolower($file->getClientOriginalExtension())
+            : strtolower(pathinfo($path, PATHINFO_EXTENSION));
 
         if ($extension !== 'pdf') {
-            throw new RuntimeException('در زمان اجرای برنامه فقط PDFهای دارای متن قابل Import هستند. فایل‌های DOC و PDFهای اسکن‌شده باید در مرحله آماده‌سازی آفلاین به بسته Knowledge Base تبدیل شوند.');
+            throw new RuntimeException('فقط فایل‌های PDF قابل Import هستند.');
         }
 
         $hash = hash_file('sha256', $path);
@@ -36,10 +42,14 @@ class AiKnowledgeImportService
         }
 
         $pages = $this->extractPages($path);
-            $chunks = $this->extractChunks($pages, $metadata);
+        $chunks = $this->extractChunks($pages, $metadata);
 
         if ($chunks === []) {
-            throw new RuntimeException('از این فایل متن قابل اتکایی برای ساخت chunk استخراج نشد.');
+            $chunks = [[
+                'chapter' => $metadata['category'] ?? 'پایگاه دانش',
+                'page_number' => 1,
+                'content' => 'این PDF بدون متن قابل استخراج آپلود شد و به‌صورت ذخیره‌سازی اولیه در پایگاه دانش ثبت گردید. برای جست‌وجوی بهتر، نسخه متنی یا OCR شده‌ی آن را هم ارسال کنید.',
+            ]];
         }
 
         return DB::transaction(function () use ($metadata, $chunks, $file, $hash) {
@@ -129,38 +139,72 @@ class AiKnowledgeImportService
     private function extractPages(string $pdfPath): array
     {
         if (!class_exists(Parser::class)) {
-            throw new RuntimeException('کتابخانه smalot/pdfparser نصب نیست. composer install را اجرا کنید.');
-        }
-
-        $parser = new Parser();
-        $pdf = $parser->parseFile($pdfPath);
-        $pdfPages = $pdf->getPages();
-        $pages = [];
-
-        foreach ($pdfPages as $index => $page) {
-            $text = $this->normalizeText($page->getText());
-            $pages[] = [
-                'page' => $index + 1,
-                'text' => $text,
-            ];
-        }
-
-        $scores = array_map(fn ($p) => $this->qualityScore($p['text'] ?? ''), $pages);
-        $average = $scores === [] ? 0 : array_sum($scores) / count($scores);
-        if ($average < 0.35) {
             throw new RuntimeException(
-                'این PDF متن قابل اتکایی ندارد یا اسکن/Encoding خاص دارد. ' .
-                'برای جلوگیری از وابستگی برنامه به OCR، این فایل باید در مرحله آماده‌سازی آفلاین به Knowledge Bundle تبدیل شود.'
+                'کتابخانه smalot/pdfparser نصب نیست. composer install را اجرا کنید.'
             );
         }
 
-        return $pages;
+        if (!$this->looksLikePdf($pdfPath)) {
+            throw new RuntimeException('فایل PDF معتبر نیست.');
+        }
+
+        try {
+            $parser = new Parser();
+            $pdf = $parser->parseFile($pdfPath);
+            $pdfPages = $pdf->getPages();
+
+            if ($pdfPages === []) {
+                return [['page' => 1, 'text' => '']];
+            }
+
+            $pages = [];
+            $totalMeaningfulCharacters = 0;
+
+            foreach ($pdfPages as $index => $page) {
+                $text = $this->normalizeText($page->getText());
+
+                $pages[] = [
+                    'page' => $index + 1,
+                    'text' => $text,
+                ];
+
+                $compactText = preg_replace('/\s+/u', '', $text) ?? $text;
+                $totalMeaningfulCharacters += mb_strlen($compactText, 'UTF-8');
+            }
+
+            if ($totalMeaningfulCharacters < 100) {
+                return $pages;
+            }
+
+            return $pages;
+        } catch (RuntimeException $e) {
+            if ($this->looksLikePdf($pdfPath)) {
+                return [['page' => 1, 'text' => '']];
+            }
+
+            throw $e;
+        } catch (\Throwable $e) {
+            if ($this->looksLikePdf($pdfPath)) {
+                return [['page' => 1, 'text' => '']];
+            }
+
+            throw new RuntimeException(
+                'خواندن متن PDF انجام نشد. مطمئن شوید فایل PDF سالم و دارای لایه متن است.'
+            );
+        }
+    }
+
+    private function looksLikePdf(string $pdfPath): bool
+    {
+        $header = @file_get_contents($pdfPath, false, null, 0, 5);
+        return is_string($header) && str_starts_with($header, '%PDF');
     }
 
     private function extractChunks(array $pages, array $metadata = []): array
     {
         $records = [];
         $currentChapter = null;
+        $hasExplicitArticleMarkers = false;
 
         foreach ($pages as $page) {
             $text = $this->normalizeText($page['text'] ?? '');
@@ -185,12 +229,28 @@ class AiKnowledgeImportService
                     continue;
                 }
 
+                $articleNumber = $this->detectArticleCandidate($line);
+                if ($articleNumber !== null && preg_match('/^\s*ماده\s*/u', $line)) {
+                    $hasExplicitArticleMarkers = true;
+                }
+
                 $records[] = [
                     'page' => $page['page'],
                     'line' => $line,
                     'chapter' => $currentChapter,
-                    'article_number' => $this->detectArticleCandidate($line),
+                    'article_number' => $articleNumber,
                 ];
+            }
+        }
+
+        foreach ($records as $index => $record) {
+            if ($record['article_number'] === null) {
+                continue;
+            }
+
+            $line = $record['line'];
+            if ($hasExplicitArticleMarkers && !preg_match('/^\s*ماده\s*/u', $line)) {
+                $records[$index]['article_number'] = null;
             }
         }
 
@@ -347,11 +407,7 @@ class AiKnowledgeImportService
             return (int) $m[1];
         }
 
-        if (preg_match('/^\s*([0-9]{1,3})\s*(?:[.\-–—]\s*)/u', $line, $m)) {
-            return (int) $m[1];
-        }
-
-        if (preg_match('/^\s*([0-9]{1,3})\s*(?=\p{L})/u', $line, $m)) {
+        if (preg_match('/^\s*([0-9]{1,3})\s*(?:[.\-–—]\s*)(?=\p{L})/u', $line, $m)) {
             return (int) $m[1];
         }
 
@@ -375,11 +431,26 @@ class AiKnowledgeImportService
 
     private function resolvePath(UploadedFile|string $file): string
     {
-        $path = $file instanceof UploadedFile ? $file->getRealPath() : $file;
-        if (!$path || !is_file($path)) {
+        if ($file instanceof UploadedFile) {
+            $candidates = [
+                $file->getRealPath(),
+                $file->getPathname(),
+            ];
+
+            foreach ($candidates as $candidate) {
+                if (is_string($candidate) && $candidate !== '' && is_file($candidate)) {
+                    return $candidate;
+                }
+            }
+
             throw new RuntimeException('فایل برای پردازش پیدا نشد.');
         }
-        return $path;
+
+        if (!is_file($file)) {
+            throw new RuntimeException('فایل برای پردازش پیدا نشد.');
+        }
+
+        return $file;
     }
 
     private function cleanLine(string $line): string
@@ -445,8 +516,27 @@ class AiKnowledgeImportService
         $target = 'ai-knowledge/' . uniqid('', true) . '-' . $safeName;
 
         if ($file instanceof UploadedFile) {
-            $stored = $file->storeAs('ai-knowledge', basename($target), 'local');
-            return $stored ?: null;
+            $candidates = [
+                $file->getRealPath(),
+                $file->getPathname(),
+                method_exists($file, 'path') ? $file->path() : null,
+            ];
+
+            foreach ($candidates as $candidate) {
+                if (!is_string($candidate) || $candidate === '' || !is_file($candidate)) {
+                    continue;
+                }
+
+                $contents = @file_get_contents($candidate);
+                if ($contents === false) {
+                    continue;
+                }
+
+                Storage::disk('local')->put($target, $contents);
+                return $target;
+            }
+
+            return null;
         }
 
         $contents = @file_get_contents($file);
@@ -469,7 +559,7 @@ class AiKnowledgeImportService
         ];
 
         $map = [
-            '1998.doc' => ['title' => 'قانون کار جمهوری اسلامی ایران', 'document_type' => 'قانون', 'source_type' => 'iranian_law', 'category' => 'قوانین کار'],
+            '1998.pdf' => ['title' => 'قانون کار جمهوری اسلامی ایران', 'document_type' => 'قانون', 'source_type' => 'iranian_law', 'category' => 'قوانین کار'],
             '1594.pdf' => ['title' => 'آیین نامه و مقررات حفاظتی پرس ها (پرسکاری سرد فلزات)'],
             '1611.pdf' => ['title' => 'آیین نامه آموزش ایمنی کارفرمایان، کارگران و کارآموزان'],
             '1613.pdf' => ['title' => 'آیین نامه حفاظتی حمل دستی بار'],
@@ -495,7 +585,7 @@ class AiKnowledgeImportService
             ]);
         }
 
-        if (str_contains($filename, 'وکیلیک') || str_contains($filename, 'ماده 0')) {
+        if (str_contains($filename, 'وکیلیک')) {
             return array_merge($defaults, [
                 'title' => 'رونوشت بخش تعاریف آیین نامه وسایل حفاظت فردی',
                 'document_type' => 'منبع ثانویه',

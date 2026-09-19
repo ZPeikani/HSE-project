@@ -241,18 +241,30 @@ TEXT;
     private function extractTerms(string $question): array
     {
         $text = $this->normalize($question);
+
+        if ($text === '') {
+            return [];
+        }
+
+        $text = preg_replace('/[\x{200C}\x{200D}\x{200E}\x{200F}\x{2060}\x{FEFF}]/u', ' ', $text) ?? $text;
         $text = preg_replace('/[^\p{L}\p{N}\s]/u', ' ', $text) ?? $text;
-        $words = preg_split('/\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY) ?: [];
+
+        if (trim($text) === '') {
+            return [];
+        }
+
+        preg_match_all('/[\p{L}\p{N}]{3,}/u', $text, $matches);
+        $words = $matches[0] ?? [];
 
         $stopWords = [
             'از','به','در','با','برای','که','را','و','یا','این','آن','یک','های','است','هست',
             'شود','شده','کنم','کنید','می','من','ما','چه','چطور','چگونه','آیا','درباره','مورد',
             'طبق','بر','تا','اگر','هم','همه','روی','ای','ترین','کردن','کرد','دارم','دارید',
-            'براساس','اساس','برحسب','میشه','میشود','میشه','استفاده','مشمول','الزامات','الزام',
+            'براساس','اساس','برحسب','میشه','میشود','استفاده','مشمول','الزامات','الزام',
         ];
 
-        return array_values(array_unique(array_filter($words, function ($word) use ($stopWords) {
-            return mb_strlen($word) >= 3 && !in_array($word, $stopWords, true);
+        return array_values(array_unique(array_filter(array_map('mb_strtolower', $words), function ($word) use ($stopWords) {
+            return mb_strlen($word, 'UTF-8') >= 3 && !in_array($word, $stopWords, true);
         })));
     }
 
@@ -324,9 +336,17 @@ TEXT;
 
     private function normalize(string $text): string
     {
+        if ($text === '') {
+            return '';
+        }
+
+        if (!mb_check_encoding($text, 'UTF-8')) {
+            $text = mb_convert_encoding($text, 'UTF-8', ['UTF-8', 'Windows-1256', 'ISO-8859-1']);
+        }
+
         $text = str_replace(
-            ['ي', 'ى', 'ك', 'ة', 'ۀ', 'ؤ', 'إ', 'أ'],
-            ['ی', 'ی', 'ک', 'ه', 'ه', 'و', 'ا', 'ا'],
+            ['ي', 'ى', 'ك', 'ة', 'ۀ', 'ؤ', 'إ', 'أ', "\xEF\xBB\xBF"],
+            ['ی', 'ی', 'ک', 'ه', 'ه', 'و', 'ا', 'ا', ''],
             $text
         );
 
@@ -335,8 +355,8 @@ TEXT;
             '٠'=>'0','١'=>'1','٢'=>'2','٣'=>'3','٤'=>'4','٥'=>'5','٦'=>'6','٧'=>'7','٨'=>'8','٩'=>'9',
         ]);
 
-        $text = preg_replace('/[\x{200C}\x{200D}\x{0640}]/u', ' ', $text) ?? $text;
-        $text = preg_replace('/\s+/u', ' ', trim(mb_strtolower($text))) ?? trim(mb_strtolower($text));
+        $text = preg_replace('/[\x{200C}\x{200D}\x{200E}\x{200F}\x{2060}\x{FEFF}\x{0640}]/u', ' ', $text) ?? $text;
+        $text = preg_replace('/\s+/u', ' ', trim(mb_strtolower($text, 'UTF-8'))) ?? trim(mb_strtolower($text, 'UTF-8'));
 
         return $text;
     }

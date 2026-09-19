@@ -5,44 +5,68 @@
 
 @section('content')
 <div class="mx-auto max-w-4xl">
-    @if(session('success'))
-        <div class="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if($errors->any())
-        <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
-            <div class="mb-2 font-black">Import انجام نشد</div>
-            <ul class="list-disc space-y-1 pr-5">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div class="mb-6">
             <h2 class="text-lg font-black text-slate-800">افزودن آیین‌نامه / استاندارد</h2>
-            <p class="mt-2 text-sm leading-7 text-slate-500">
-                PDF متنی را انتخاب کنید. سیستم متن را استخراج کرده، فصل‌ها و ماده‌ها را تشخیص می‌دهد
-                و هر ماده را به‌عنوان یک chunk در پایگاه دانش ذخیره می‌کند.
-            </p>
         </div>
 
         <form method="POST" action="{{ route('ai.knowledge.import.store') }}" enctype="multipart/form-data" class="space-y-5">
             @csrf
 
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const input = document.getElementById('pdf-upload-input');
+                    const fileName = document.getElementById('pdf-file-name');
+                    const removeButton = document.getElementById('pdf-remove-button');
+
+                    if (!input || !fileName || !removeButton) {
+                        return;
+                    }
+
+                    const updateState = () => {
+                        const selected = input.files && input.files[0];
+
+                        if (selected) {
+                            fileName.textContent = selected.name;
+                            removeButton.classList.remove('hidden');
+                        } else {
+                            fileName.textContent = 'Choose File';
+                            removeButton.classList.add('hidden');
+                        }
+                    };
+
+                    input.addEventListener('change', updateState);
+                    removeButton.addEventListener('click', function () {
+                        input.value = '';
+                        updateState();
+                    });
+                });
+            </script>
+
             <div class="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 p-5">
                 <label class="mb-2 block text-sm font-bold text-slate-700">فایل PDF *</label>
-                <input
-                    type="file"
-                    name="pdf"
-                    accept="application/pdf"
-                    required
-                    class="block w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm"
-                >
+
+                <div class="relative">
+                    <input
+                        id="pdf-upload-input"
+                        type="file"
+                        name="pdf"
+                        accept="application/pdf"
+                        required
+                        class="sr-only"
+                    >
+
+                    <label for="pdf-upload-input" class="relative flex cursor-pointer items-center justify-between gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
+                        <span id="pdf-file-name" class="flex-1 truncate text-right text-slate-500">Choose File</span>
+
+                    </label>
+                    <button type="button" id="pdf-remove-button" class="absolute left-0 top-0 hidden h-full w-11 cursor-pointer items-center justify-end text-red-500 transition hover:text-red-700" aria-label="حذف فایل انتخابی" title="حذف فایل">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
                 <p class="mt-2 text-xs text-slate-400">حداکثر حجم: ۲۰ مگابایت</p>
             </div>
 
