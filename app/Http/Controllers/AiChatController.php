@@ -16,7 +16,6 @@ use App\Models\User;
 use App\Models\WorkPermit;
 use App\Models\PpeIssue;
 use App\Services\AiActionService;
-use App\Services\AiKnowledgeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -148,7 +147,7 @@ class AiChatController extends Controller
     // ─────────────────────────────────────────────────────────────
     // System Prompt با قابلیت عملیات
     // ─────────────────────────────────────────────────────────────
-    private function buildSystemPrompt(User $authUser, string $knowledgeContext = ""): string
+    private function buildSystemPrompt(User $authUser): string
     {
         $dbContext = $this->buildDatabaseContext($authUser);
         $isAdmin   = $authUser->role === UserRole::Admin;
@@ -177,8 +176,7 @@ class AiChatController extends Controller
             . 'وقتی سوال درباره داده‌های سامانه است، از اطلاعات زیر استفاده کن:'
             . "\n\n" . $dbContext
             . $operationalSection
-            . "\n\n" . $knowledgeContext
-            . "\n\nقواعد استفاده از منابع: اگر منبع ایرانی بازیابی شده، در پرسش‌های حقوقی/الزام‌آور آن را بر اطلاعات عمومی ترجیح بده. عنوان منبع و ماده/بند را فقط وقتی ذکر کن که در منبع بازیابی‌شده وجود دارد. اگر کاربر سؤال پیگیری مانند «کدام ماده؟»، «براساس کدام ماده؟»، «کدام بند؟» یا مشابه آن پرسید، موضوع را از تاریخچه مکالمه تشخیص بده و فقط از همان موضوع/آیین‌نامه برای تعیین مستند استفاده کن؛ به یک ماده از آیین‌نامه‌ای دیگر صرفاً به دلیل وجود واژه «ماده» استناد نکن. برای عدد، آستانه، الزام قانونی و شماره ماده، فقط وقتی پاسخ قطعی بده که در منابع بازیابی‌شده صریحاً پشتیبانی شده باشد. اگر منابع با هم تعارض دارند یا منبع کافی نیست، تعارض/نبود منبع را صریح اعلام کن و چیزی را حدس نزن. منبع ایرانی و استاندارد/راهنمای بین‌المللی را با هم مخلوط نکن؛ در صورت نیاز آن‌ها را جداگانه با برچسب «الزامات قانونی ایران» و «راهنمای بین‌المللی» توضیح بده.";
+            . "\n\nپاسخ‌ها باید بر اساس داده‌های سامانه و دانش عمومی HSE ارائه شوند و در صورت نبود اطلاعات لازم، صریحاً اعلام شود که اطلاعات کافی در سامانه وجود ندارد.";
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -341,63 +339,8 @@ class AiChatController extends Controller
             ->reverse()
             ->values();
 
-        // ── بازیابی منابع HSE مرتبط با سؤال ──
-        // برای سؤال‌های پیگیری مثل «براساس کدوم ماده؟»، سؤال قبلی هم وارد
-        // عبارت جست‌وجو می‌شود تا موضوع آیین‌نامه از دست نرود.
-        $knowledgeService = app(AiKnowledgeService::class);
-
-        $retrievalQuestion = $request->message;
-        $recentUserQuestions = $dbHistory
-            ->where('role', 'user')
-            ->pluck('content')
-            ->take(-3)
-            ->all();
-
-        if ($recentUserQuestions !== []) {
-            $retrievalQuestion = implode("\n", array_merge($recentUserQuestions, [$request->message]));
-        }
-
-        $knowledgeResults = $knowledgeService->search($retrievalQuestion);
-
-        // برای سؤال‌های حقوقی، اگر منبع بازیابی نشد، اصلاً به مدل اجازه تولید
-        // پاسخ حدسی نمی‌دهیم؛ پاسخ کنترل‌شده برمی‌گردد.
-        $normalizedRetrievalQuestion = mb_strtolower($retrievalQuestion);
-        $isLegalQuestion = false;
-        foreach ([
-            'قانون', 'آیین نامه', 'آیین‌نامه', 'ماده', 'تبصره', 'بند',
-            'الزام قانونی', 'الزامات ایمنی', 'مقررات', 'وزارت کار', 'شورای عالی حفاظت فنی',
-            'مشمول الزامات', 'کار در ارتفاع', 'ارتفاع مشمول',
-            'براساس کدام ماده', 'بر اساس کدام ماده',
-        ] as $legalTerm) {
-            if (mb_stripos($normalizedRetrievalQuestion, $legalTerm) !== false) {
-                $isLegalQuestion = true;
-                break;
-            }
-        }
-
-        if ($isLegalQuestion && $knowledgeResults === []) {
-            $content = 'برای این پرسش حقوقی/مقرراتی، منبع فعال و مشخصی در پایگاه دانش پیدا نشد؛ بنابراین از بیان عدد، ماده یا الزام قانونی بدون مستند خودداری می‌کنم.';
-
-            AiMessage::insert([
-                ['ai_conversation_id' => $conversation->id, 'role' => 'user', 'content' => $request->message, 'created_at' => now()],
-                ['ai_conversation_id' => $conversation->id, 'role' => 'assistant', 'content' => $content, 'created_at' => now()],
-            ]);
-
-            $conversation->touch();
-            $conversation->save();
-
-            return response()->json([
-                'reply' => $content,
-                'conversation_id' => $conversation->id,
-                'msg_count' => $msgCount + 1,
-                'max_msgs' => self::MAX_MESSAGES,
-            ]);
-        }
-
-        $knowledgeContext = $knowledgeService->formatForPrompt($knowledgeResults);
-
         // ── ساخت payload برای AI ──
-        $systemPrompt = $this->buildSystemPrompt($user, $knowledgeContext);
+        $systemPrompt = $this->buildSystemPrompt($user);
         $messages     = [['role' => 'system', 'content' => $systemPrompt]];
         foreach ($dbHistory as $h) {
             $messages[] = ['role' => $h->role, 'content' => $h->content];
