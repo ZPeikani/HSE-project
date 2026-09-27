@@ -344,7 +344,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 380px;
+    width: 25vw;
+    min-width: 380px;
     height: 100vh;
     height: 100dvh;
     z-index: 30;
