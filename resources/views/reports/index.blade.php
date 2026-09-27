@@ -133,7 +133,7 @@
                 <tr class="bg-slate-100 text-[11px] text-slate-600">
                     <th class="p-4 font-black">واحد</th>
                     <th class="p-4 font-black">کاربران</th>
-                    <th class="p-4 font-black">ریسک‌های ثبت‌شده</th>
+                    <th class="p-4 font-black">ریسک‌های ثبت‌ شده</th>
                     <th class="p-4 font-black">اقدامات باز</th>
                     <th class="p-4 font-black">میانگین بازرسی</th>
                     <th class="p-4 font-black">ارزیابی</th>
@@ -165,7 +165,7 @@
                             <span class="inline-flex min-w-[52px] items-center justify-center rounded-lg {{ $d->actions_open > 3 ? 'bg-rose-100' : 'bg-sky-100' }} px-2.5 py-1.5 font-bold {{ $openActionClass }}">{{ $d->actions_open }}</span>
                         </td>
                         <td class="p-4">
-                            <div class="flex items-center justify-end gap-2">
+                            <div class="flex items-center gap-2">
                                 <span class="font-black text-slate-800">{{ $d->inspection_avg }}٪</span>
                                 <div class="h-2.5 w-20 overflow-hidden rounded-full bg-slate-100">
                                     <div class="h-full rounded-full {{ $d->inspection_avg >= 85 ? 'bg-emerald-500' : ($d->inspection_avg >= 70 ? 'bg-amber-500' : 'bg-rose-500') }}" style="width: {{ min(max($d->inspection_avg, 0), 100) }}%"></div>
