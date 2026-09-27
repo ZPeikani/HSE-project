@@ -9,7 +9,16 @@ class AiMessage extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['ai_conversation_id', 'role', 'content'];
+    protected $fillable = [
+        'ai_conversation_id',
+        'role',
+        'content',
+        'attachment_type',
+        'attachment_path',
+        'attachment_name',
+        'attachment_mime',
+        'attachment_size',
+    ];
 
     protected $casts = [
         'created_at' => 'datetime',

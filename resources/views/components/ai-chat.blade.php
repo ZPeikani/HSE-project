@@ -107,10 +107,27 @@
 
     {{-- Input Area --}}
     <div id="ai-input-area">
-        <textarea id="ai-input"
-            placeholder="سوال خود را بپرسید... (Enter برای ارسال)"
-            rows="1"
-            maxlength="2000"></textarea>
+        <input id="ai-image-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        <button id="ai-image-btn" type="button" title="افزودن تصویر" aria-label="افزودن تصویر">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 15l-5-5L5 21"/>
+            </svg>
+        </button>
+        <div id="ai-input-main">
+            <div id="ai-image-preview" hidden>
+                <img id="ai-image-preview-img" alt="پیش‌نمایش تصویر">
+                <div class="ai-image-preview-info">
+                    <span id="ai-image-preview-name"></span>
+                    <button id="ai-image-remove" type="button" title="حذف تصویر">✕</button>
+                </div>
+            </div>
+            <textarea id="ai-input"
+                placeholder="سوال خود را بپرسید... (Enter برای ارسال)"
+                rows="1"
+                maxlength="2000"></textarea>
+        </div>
         <button id="ai-send-btn" title="ارسال" disabled>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 19-7z"/>
@@ -575,6 +592,15 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
+ .ai-chat-image {
+    display: block;
+    width: min(230px, 100%);
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 6px;
+}
+
 /* Typing indicator */
 .ai-typing-dots {
     display: flex;
@@ -624,9 +650,67 @@
 /* ─────────────────────────────────────────────────────────────
    Input Area
 ───────────────────────────────────────────────────────────── */
+#ai-image-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+#ai-image-btn:hover { background: #ecfdf5; color: #059669; border-color: #a7f3d0; }
+#ai-image-btn svg { width: 19px; height: 19px; }
+#ai-input-main { flex: 1 1 0; width: 0; min-width: 0; }
+#ai-image-preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding: 5px 7px;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+#ai-image-preview[hidden] { display: none; }
+#ai-image-preview-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 7px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.ai-image-preview-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+#ai-image-preview-name {
+    font-size: 11px;
+    color: #475569;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#ai-image-remove {
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 3px 6px;
+}
+#ai-image-remove:hover { color: #dc2626; }
 #ai-input-area {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 8px;
     padding: 12px 14px;
     border-top: 1px solid #e5e7eb;
@@ -634,7 +718,10 @@
     flex-shrink: 0;
 }
 #ai-input {
-    flex: 1;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 42px;
     border: 1.5px solid #e2e8f0;
     border-radius: 14px;
     padding: 9px 13px;
@@ -701,6 +788,12 @@
     const clearBtn    = document.getElementById('ai-clear-btn');
     const messages    = document.getElementById('ai-messages');
     const input       = document.getElementById('ai-input');
+    const imageInput  = document.getElementById('ai-image-input');
+    const imageBtn    = document.getElementById('ai-image-btn');
+    const imagePreview = document.getElementById('ai-image-preview');
+    const imagePreviewImg = document.getElementById('ai-image-preview-img');
+    const imagePreviewName = document.getElementById('ai-image-preview-name');
+    const imageRemove = document.getElementById('ai-image-remove');
     const sendBtn     = document.getElementById('ai-send-btn');
     const suggestions = document.getElementById('ai-suggestions');
     const messageCount = document.getElementById('ai-message-count');
@@ -717,6 +810,7 @@
     let loading = false;
     let pendingConfirmAction = null;
     let userMessageCount = 0;
+    let selectedImage = null;
 
     function updateMessageCount(count, max = 100) {
         const current = Math.max(0, Number(count) || 0);
@@ -846,6 +940,7 @@
     function resetConversation() {
         history = [];
         conversationId = null;
+        clearSelectedImage();
         updateMessageCount(0);
         messages.innerHTML = '';
         suggestions.style.display = 'flex';
@@ -912,7 +1007,7 @@
                 messages.innerHTML = '';
                 suggestions.style.display = 'none';
                 data.messages.forEach(message => message.role === 'user'
-                    ? appendUser(message.content)
+                    ? appendUser(message.content, message.attachment_url, message.attachment_name)
                     : appendBot(message.content));
                 sidebar.classList.remove('sheet-open');
                 sidebar.setAttribute('aria-hidden', 'true');
@@ -921,8 +1016,44 @@
     }
 
     /* ── Auto-resize textarea ─────────────────────────────── */
+    imageBtn.addEventListener('click', () => imageInput.click());
+
+    imageInput.addEventListener('change', () => {
+        const file = imageInput.files && imageInput.files[0];
+        if (!file) return;
+
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+            imageInput.value = '';
+            showAlert('فرمت نامعتبر', 'فقط JPG، PNG و WEBP قابل ارسال هستند.');
+            return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+            imageInput.value = '';
+            showAlert('حجم تصویر زیاد است', 'حداکثر حجم تصویر ۱۰ مگابایت است.');
+            return;
+        }
+
+        selectedImage = file;
+        imagePreviewImg.src = URL.createObjectURL(file);
+        imagePreviewName.textContent = file.name;
+        imagePreview.hidden = false;
+        sendBtn.disabled = false;
+    });
+
+    imageRemove.addEventListener('click', clearSelectedImage);
+
+    function clearSelectedImage() {
+        if (imagePreviewImg.src.startsWith('blob:')) URL.revokeObjectURL(imagePreviewImg.src);
+        selectedImage = null;
+        imageInput.value = '';
+        imagePreview.hidden = true;
+        imagePreviewImg.removeAttribute('src');
+        imagePreviewName.textContent = '';
+        sendBtn.disabled = !input.value.trim();
+    }
+
     input.addEventListener('input', function () {
-        sendBtn.disabled = !this.value.trim();
+        sendBtn.disabled = !this.value.trim() && !selectedImage;
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 130) + 'px';
     });
@@ -948,10 +1079,14 @@
     function scrollBottom() {
         messages.scrollTop = messages.scrollHeight;
     }
-    function appendUser(text) {
+    function appendUser(text, imageUrl = null, imageName = null) {
         const div = document.createElement('div');
         div.className = 'ai-msg ai-msg-user';
-        div.innerHTML = `<div class="ai-msg-bubble">${escapeHtml(text)}</div>`;
+        const imageHtml = imageUrl
+            ? `<img class="ai-chat-image" src="${escapeHtml(imageUrl)}" alt="${escapeHtml(imageName || 'تصویر')}" loading="lazy">`
+            : '';
+        const textHtml = text ? `<div>${escapeHtml(text)}</div>` : '';
+        div.innerHTML = `<div class="ai-msg-bubble">${imageHtml}${textHtml}</div>`;
         messages.appendChild(div);
         scrollBottom();
     }
@@ -1009,7 +1144,7 @@
     /* ── Send ─────────────────────────────────────────────── */
     function sendMessage() {
         const text = input.value.trim();
-        if (!text || loading) return;
+        if ((!text && !selectedImage) || loading) return;
         if (userMessageCount >= 100) {
             showAlert('ظرفیت مکالمه تکمیل شده است', 'در این گفتگو حداکثر ۱۰۰ پیام کاربر مجاز است. لطفاً مکالمه جدیدی شروع کنید.');
             return;
@@ -1021,19 +1156,29 @@
         input.style.height = 'auto';
         suggestions.style.display = 'none';
 
-        appendUser(text);
+        const imageFile = selectedImage;
+        const imagePreviewUrl = imageFile ? URL.createObjectURL(imageFile) : null;
+        appendUser(text, imagePreviewUrl, imageFile?.name);
         showTyping();
+
+        const formData = new FormData();
+        formData.append('message', text);
+        if (conversationId) formData.append('conversation_id', conversationId);
+        if (imageFile) formData.append('image', imageFile);
 
         fetch(ENDPOINT, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': CSRF,
                 'Accept': 'application/json',
             },
-            body: JSON.stringify({ message: text, conversation_id: conversationId, history: history.slice(-10) }),
+            body: formData,
         })
-        .then(r => r.json())
+        .then(async r => {
+            const data = await r.json().catch(() => ({}));
+            if (!r.ok) throw { data };
+            return data;
+        })
         .then(data => {
             hideTyping();
             if (data.error) {
@@ -1046,21 +1191,27 @@
             } else if (typeof data.reply !== 'string') {
                 showAlert('پاسخ نامعتبر', 'سرور پاسخ قابل نمایش برای این پیام برنگرداند.');
             } else {
-                history.push({ role: 'user',      content: text       });
+                history.push({ role: 'user', content: text });
                 history.push({ role: 'assistant', content: data.reply });
                 conversationId = data.conversation_id || conversationId;
                 updateMessageCount(data.msg_count, data.max_msgs);
                 if (history.length > 20) history = history.slice(-20);
                 appendBot(data.reply);
+                clearSelectedImage();
             }
         })
         .catch(err => {
             hideTyping();
-            showAlert('خطای اتصال', 'خطا در ارتباط با سرور Laravel:\n' + err.message);
+            const data = err?.data || {};
+            if (data.errors?.image?.length) {
+                showAlert('تصویر قابل ارسال نیست', data.errors.image.join('\n'));
+            } else {
+                showAlert('خطای اتصال', data.error || 'خطا در ارتباط با سرور Laravel.');
+            }
         })
         .finally(() => {
             loading = false;
-            sendBtn.disabled = !input.value.trim();
+            sendBtn.disabled = !input.value.trim() && !selectedImage;
         });
     }
 })();

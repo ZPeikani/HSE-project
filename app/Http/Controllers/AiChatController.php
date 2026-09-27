@@ -19,6 +19,7 @@ use App\Services\AiActionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class AiChatController extends Controller
 {
@@ -210,8 +211,13 @@ class AiChatController extends Controller
             'title'         => $conversation->title,
             'message_count' => $conversation->messages->where('role', 'user')->count(),
             'messages'      => $conversation->messages->map(fn($m) => [
-                'role'    => $m->role,
+                'role' => $m->role,
                 'content' => $m->content,
+                'attachment_type' => $m->attachment_type,
+                'attachment_name' => $m->attachment_name,
+                'attachment_url' => $m->attachment_path
+                    ? Storage::disk('public')->url($m->attachment_path)
+                    : null,
             ]),
         ]);
     }
@@ -294,9 +300,14 @@ class AiChatController extends Controller
     public function chat(Request $request)
     {
         $request->validate([
-            'message'         => 'required|string|max:2000',
+            'message'         => 'nullable|string|max:2000',
             'conversation_id' => 'nullable|integer',
+            'image'           => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
         ]);
+
+        if (!$request->filled('message') && !$request->hasFile('image')) {
+            return response()->json(['error' => 'متن یا تصویر برای ارسال الزامی است.'], 422);
+        }
 
         $user = Auth::user();
 
@@ -342,10 +353,45 @@ class AiChatController extends Controller
         // ── ساخت payload برای AI ──
         $systemPrompt = $this->buildSystemPrompt($user);
         $messages     = [['role' => 'system', 'content' => $systemPrompt]];
+
         foreach ($dbHistory as $h) {
-            $messages[] = ['role' => $h->role, 'content' => $h->content];
+            $historyContent = $h->content ?? '';
+            if ($h->role === 'user' && $h->attachment_path && Storage::disk('public')->exists($h->attachment_path)) {
+                $historyContent = [
+                    ['type' => 'text', 'text' => $historyContent ?: 'این تصویر را بررسی کن.'],
+                    ['type' => 'image_url', 'image_url' => [
+                        'url' => $this->fileAsDataUrl($h->attachment_path, $h->attachment_mime),
+                    ]],
+                ];
+            }
+            $messages[] = ['role' => $h->role, 'content' => $historyContent];
         }
-        $messages[] = ['role' => 'user', 'content' => $request->message];
+
+        $imagePath = null;
+        $imageName = null;
+        $imageMime = null;
+        $imageSize = null;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $imagePath = $file->store('ai-chat/images', 'public');
+            $imageName = $file->getClientOriginalName();
+            $imageMime = $file->getMimeType();
+            $imageSize = $file->getSize();
+        }
+
+        $currentText = $request->input('message', '');
+        $currentContent = $currentText;
+        if ($imagePath) {
+            $currentContent = [
+                ['type' => 'text', 'text' => $currentText ?: 'این تصویر را از نظر HSE تحلیل کن.'],
+                ['type' => 'image_url', 'image_url' => [
+                    'url' => $this->fileAsDataUrl($imagePath, $imageMime),
+                ]],
+            ];
+        }
+
+        $messages[] = ['role' => 'user', 'content' => $currentContent];
 
         // ── فراخوانی AI ──
         $response = Http::withHeaders([
@@ -381,14 +427,28 @@ class AiChatController extends Controller
         $actionPayload = $this->extractActionPayload($content);
 
         // ── ذخیره پیام‌ها ──
-        AiMessage::insert([
-            ['ai_conversation_id' => $conversation->id, 'role' => 'user',      'content' => $request->message,  'created_at' => now()],
-            ['ai_conversation_id' => $conversation->id, 'role' => 'assistant', 'content' => trim($content),     'created_at' => now()],
+        AiMessage::create([
+            'ai_conversation_id' => $conversation->id,
+            'role' => 'user',
+            'content' => $request->input('message', ''),
+            'attachment_type' => $imagePath ? 'image' : null,
+            'attachment_path' => $imagePath,
+            'attachment_name' => $imageName,
+            'attachment_mime' => $imageMime,
+            'attachment_size' => $imageSize,
+            'created_at' => now(),
+        ]);
+        AiMessage::create([
+            'ai_conversation_id' => $conversation->id,
+            'role' => 'assistant',
+            'content' => trim($content),
+            'created_at' => now(),
         ]);
 
         // ── به‌روزرسانی عنوان ──
         if ($conversation->title === 'مکالمه جدید') {
-            $conversation->title = mb_substr($request->message, 0, 50);
+            $titleSource = $request->input('message') ?: ($imageName ?: 'تحلیل تصویر');
+            $conversation->title = mb_substr($titleSource, 0, 50);
         }
         $conversation->touch();
         $conversation->save();
@@ -458,6 +518,15 @@ class AiChatController extends Controller
     // ─────────────────────────────────────────────────────────────
     // Helpers
     // ─────────────────────────────────────────────────────────────
+
+    private function fileAsDataUrl(string $path, ?string $mime = null): string
+    {
+        $disk = Storage::disk('public');
+        $content = $disk->get($path);
+        $mime = $mime ?: ($disk->mimeType($path) ?: 'application/octet-stream');
+
+        return 'data:' . $mime . ';base64,' . base64_encode($content);
+    }
 
     /** استخراج JSON عملیات از پاسخ AI */
     private function extractActionPayload(string $content): ?array
