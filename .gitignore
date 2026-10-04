@@ -13,3 +13,6 @@ yarn-error.log
 /storage/framework/views/
 /storage/logs/*.log
 /bootstrap/cache/*.php
+/storage/app/public/ai-chat/*
+!/storage/app/public/ai-chat/.gitkeep
+/public/storage

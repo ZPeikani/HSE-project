@@ -770,6 +770,12 @@
     transform: none;
 }
 #ai-send-btn svg { width: 18px; height: 18px; }
+
+#ai-send-btn[aria-busy="true"] {
+    cursor: wait;
+    opacity: .45;
+    pointer-events: none;
+}
 </style>
 
 <script>
@@ -812,6 +818,14 @@
     let pendingConfirmAction = null;
     let userMessageCount = 0;
     let selectedImage = null;
+
+    // وضعیت دکمه ارسال فقط از یک نقطه کنترل می‌شود.
+    // هنگام loading کاربر می‌تواند تایپ کند، اما ارسال تا پایان پاسخ AI غیرفعال می‌ماند.
+    function updateSendState() {
+        const hasContent = Boolean(input.value.trim() || selectedImage);
+        sendBtn.disabled = loading || !hasContent;
+        sendBtn.setAttribute('aria-busy', loading ? 'true' : 'false');
+    }
 
     function updateMessageCount(count, max = 100) {
         const current = Math.max(0, Number(count) || 0);
@@ -1038,23 +1052,24 @@
         imagePreviewImg.src = URL.createObjectURL(file);
         imagePreviewName.textContent = file.name;
         imagePreview.hidden = false;
-        sendBtn.disabled = false;
+        updateSendState();
     });
 
     imageRemove.addEventListener('click', clearSelectedImage);
 
-    function clearSelectedImage() {
+    function clearSelectedImage(updateState = true) {
         if (imagePreviewImg.src.startsWith('blob:')) URL.revokeObjectURL(imagePreviewImg.src);
         selectedImage = null;
         imageInput.value = '';
         imagePreview.hidden = true;
         imagePreviewImg.removeAttribute('src');
         imagePreviewName.textContent = '';
-        sendBtn.disabled = !input.value.trim();
+
+        if (updateState) updateSendState();
     }
 
     input.addEventListener('input', function () {
-        sendBtn.disabled = !this.value.trim() && !selectedImage;
+        updateSendState();
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 130) + 'px';
     });
@@ -1089,6 +1104,15 @@
         const textHtml = text ? `<div>${escapeHtml(text)}</div>` : '';
         div.innerHTML = `<div class="ai-msg-bubble">${imageHtml}${textHtml}</div>`;
         messages.appendChild(div);
+
+        // URL موقت preview بعد از load آزاد می‌شود؛ خود تصویر داخل پیام باقی می‌ماند.
+        if (imageUrl && imageUrl.startsWith('blob:')) {
+            const img = div.querySelector('.ai-chat-image');
+            const release = () => URL.revokeObjectURL(imageUrl);
+            img?.addEventListener('load', release, { once: true });
+            img?.addEventListener('error', release, { once: true });
+        }
+
         scrollBottom();
     }
     function appendBot(text) {
@@ -1151,15 +1175,22 @@
             return;
         }
 
+        // فایل و متن این درخواست را snapshot می‌گیریم؛ بعد UI ورودی فوراً برای پیام بعدی آزاد می‌شود.
+        const imageFile = selectedImage;
+        const imagePreviewUrl = imageFile ? URL.createObjectURL(imageFile) : null;
+
         loading = true;
-        sendBtn.disabled = true;
         input.value = '';
         input.style.height = 'auto';
         suggestions.style.display = 'none';
 
-        const imageFile = selectedImage;
-        const imagePreviewUrl = imageFile ? URL.createObjectURL(imageFile) : null;
         appendUser(text, imagePreviewUrl, imageFile?.name);
+
+        // تصویرِ همین پیام بلافاصله از بخش input حذف می‌شود.
+        // imageFile بالا هنوز reference معتبر دارد و داخل FormData ارسال می‌شود.
+        clearSelectedImage(false);
+        updateSendState();
+
         showTyping();
 
         const formData = new FormData();
@@ -1186,6 +1217,8 @@
                 if (data.conv_full) updateMessageCount(data.msg_count, data.max_msgs);
                 const debug = data.debug
                     ? '\n\nجزئیات:\nHTTP Status: ' + data.debug.http_status
+                      + (data.debug.model_used ? '\nModel: ' + data.debug.model_used : '')
+                      + (data.debug.models_tried ? '\nTried: ' + (Array.isArray(data.debug.models_tried) ? data.debug.models_tried.join(', ') : data.debug.models_tried) : '')
                       + '\n' + JSON.stringify(data.debug.body, null, 2)
                     : '';
                 showAlert('خطای هوش مصنوعی', data.error + debug);
@@ -1198,7 +1231,6 @@
                 updateMessageCount(data.msg_count, data.max_msgs);
                 if (history.length > 20) history = history.slice(-20);
                 appendBot(data.reply);
-                clearSelectedImage();
             }
         })
         .catch(err => {
@@ -1207,12 +1239,18 @@
             if (data.errors?.image?.length) {
                 showAlert('تصویر قابل ارسال نیست', data.errors.image.join('\n'));
             } else {
-                showAlert('خطای اتصال', data.error || 'خطا در ارتباط با سرور Laravel.');
+                const dbg = data.debug
+                    ? '\n\nجزئیات:\nHTTP Status: ' + data.debug.http_status
+                      + (data.debug.model_used ? '\nModel: ' + data.debug.model_used : '')
+                      + (data.debug.models_tried ? '\nTried: ' + (Array.isArray(data.debug.models_tried) ? data.debug.models_tried.join(', ') : data.debug.models_tried) : '')
+                      + '\n' + JSON.stringify(data.debug.body, null, 2)
+                    : '';
+                showAlert('خطای هوش مصنوعی', (data.error || data.message || 'خطا در ارتباط با سرور Laravel.') + dbg);
             }
         })
         .finally(() => {
             loading = false;
-            sendBtn.disabled = !input.value.trim() && !selectedImage;
+            updateSendState();
         });
     }
 })();
