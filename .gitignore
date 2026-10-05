@@ -16,3 +16,6 @@ yarn-error.log
 /storage/app/public/ai-chat/*
 !/storage/app/public/ai-chat/.gitkeep
 .phpunit.result.cache
+
+/storage/app/public/health-exams/*
+!/storage/app/public/health-exams/.gitkeep

@@ -1,10 +1,11 @@
 <?php
 namespace App\Services;
-use App\Models\{CorrectiveAction,HseNotification,SafetyEquipment,User};
+use App\Models\{CorrectiveAction,HseNotification,SafetyEquipment,User,OccupationalHealthProfile};
 class HseReminderService {
  public function syncFor(User $user):void {
     $this->syncCorrectiveActions($user);
     $this->syncEquipment($user);
+    $this->syncHealth($user);
  }
 
  private function syncCorrectiveActions(User $user):void {
@@ -47,4 +48,32 @@ class HseReminderService {
      ]);
     }
  }
+ private function syncHealth(User $user):void {
+    if($user->hasRole('inspector'))return;
+    $query=OccupationalHealthProfile::with('user');
+    if($user->hasRole('unit_manager'))$query->whereHas('user',fn($q)=>$q->where('department_id',$user->department_id));
+    foreach($query->get() as $profile){
+      if($profile->next_examination_date){
+       $days=today()->diffInDays($profile->next_examination_date,false);
+       if($days<=30){
+       $type=$days<0?'overdue':($days===0?'due_today':'upcoming');
+       $key="health-exam:{$profile->id}:{$type}:{$user->id}";
+       HseNotification::firstOrCreate(['notification_key'=>$key],[
+        'user_id'=>$user->id,'type'=>$type,
+        'title'=>$days<0?'معاینه طب کار منقضی شده':($days===0?'سررسید معاینه طب کار':'نزدیک‌شدن موعد معاینه طب کار'),
+        'message'=>($profile->user?->name??'کارمند').' — '.($profile->job_title??'پرونده سلامت'),
+        'notifiable_type'=>$profile::class,'notifiable_id'=>$profile->id,'due_at'=>$profile->next_examination_date,
+       ]);
+       }
+      }
+      if($profile->follow_up_required && $profile->follow_up_date && today()->diffInDays($profile->follow_up_date,false)<=7){
+       $d=today()->diffInDays($profile->follow_up_date,false);$type=$d<0?'overdue':($d===0?'due_today':'upcoming');
+       HseNotification::firstOrCreate(['notification_key'=>"health-followup:{$profile->id}:{$type}:{$user->id}"],[
+        'user_id'=>$user->id,'type'=>$type,'title'=>$d<0?'پیگیری پزشکی معوق':'پیگیری پزشکی نزدیک است',
+        'message'=>($profile->user?->name??'کارمند').' — پیگیری پرونده سلامت','notifiable_type'=>$profile::class,'notifiable_id'=>$profile->id,'due_at'=>$profile->follow_up_date,
+       ]);
+      }
+    }
+ }
+
 }
