@@ -15,4 +15,4 @@ yarn-error.log
 /bootstrap/cache/*.php
 /storage/app/public/ai-chat/*
 !/storage/app/public/ai-chat/.gitkeep
-/public/storage
+.phpunit.result.cache
